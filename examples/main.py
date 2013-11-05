@@ -69,7 +69,9 @@ class PongGame(Widget):
 
 class PongApp(App):
     def build(self):
-	Config.set('input','multitouchscreen1','tuio,127.0.0.1:3333')
+	    # Edited
+        Config.set('input','multitouchscreen1','tuio,127.0.0.1:3333')
+        
         game = PongGame()
         game.serve_ball()
         Clock.schedule_interval(game.update, 1.0 / 60.0)
