@@ -1,0 +1,15 @@
+#:kivy 1.1.1
+
+<WhackMole>:
+    size: 80,80
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<WhackGame>:
+    mole: whack_mole
+
+    WhackMole:
+        id: whack_mole
+        center: self.parent.center
