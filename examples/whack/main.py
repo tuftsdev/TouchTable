@@ -33,15 +33,37 @@ class WhackMole(Widget):
         else:
           self.opacity = 1
 
+class Hole(Widget):
+    def draw_mole(self, mole):
+        mole.center = self.center
+
 class WhackGame(Widget):
     mole = ObjectProperty(None)
     score = NumericProperty(0)
+    holes = []
+    hole_1 = ObjectProperty(None)
+    hole_2 = ObjectProperty(None)
+    hole_3 = ObjectProperty(None)
+    hole_4 = ObjectProperty(None)
+    hole_5 = ObjectProperty(None)
+    hole_6 = ObjectProperty(None)
+    hole_7 = ObjectProperty(None)
+    hole_8 = ObjectProperty(None)
+    hole_9 = ObjectProperty(None)
+    hole_10 = ObjectProperty(None)
+    hole_11 = ObjectProperty(None)
+    hole_12 = ObjectProperty(None)
+    hole_13 = ObjectProperty(None)
+    hole_14 = ObjectProperty(None)
+    hole_15 = ObjectProperty(None)
 
     def start(self):
-        #self.mole = WhackMole(size=(50,50))
-        self.mole.center = self.center
-        self.mole.reset()
-        Clock.schedule_interval(self.toggle, 2)
+        self.holes = [self.hole_1, self.hole_2, self.hole_3, self.hole_4, self.hole_5,
+                      self.hole_6, self.hole_7, self.hole_8, self.hole_9, self.hole_10,
+                      self.hole_11, self.hole_12, self.hole_13, self.hole_14, self.hole_15]
+        self.move_mole()
+        Clock.schedule_once(self.toggle, random.uniform(1, 3))
+        # Clock.schedule_interval(self.toggle, 2)
 
     def update(self, dt):
         self.mole.v = dt
@@ -50,18 +72,16 @@ class WhackGame(Widget):
           self.toggle()
           self.mole.hit = False
 
+    def move_mole(self):
+        hole_num = random.randint(0, len(self.holes)-1)
+        hole = self.holes[hole_num]
+        hole.draw_mole(self.mole)
+
     def toggle(self, dt=None):
         self.mole.toggle()
         if not self.mole.up:
-          self.mole.x = random.randint(0, self.width)
-          self.mole.y = random.randint(0, self.height)
-
-    # def on_touch_down(self, touch):
-    #     #print ("Touch at x:%d y:%d" % (touch.x, touch.y))
-    #     #print ("Compared to x:%d y:%d x+40:%d y+40:%d x-40:%d y-40:%d" % (self.mole.x, self.mole.y,self.mole.x + 40, self.mole.y + 40, self.mole.x - 40, self.mole.y-40))
-    #     if (touch.x < self.mole.x + 80) and (touch.x > self.mole.x) and (touch.y < self.mole.y + 80) and (touch.y > self.mole.y):
-    #         self.mole.whacked()
-
+          self.move_mole()
+        Clock.schedule_once(self.toggle, random.uniform(1, 3))
 class WhackApp(App):
     def build(self):
     # Initialize TUIO
