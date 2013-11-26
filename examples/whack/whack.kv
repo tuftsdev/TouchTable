@@ -1,4 +1,4 @@
-#:kivy 1.1.1
+# #:kivy 1.1.1
 
 <WhackMole>:
     size: 80,80
@@ -10,6 +10,13 @@
 <WhackGame>:
     mole: whack_mole
 
+    Label:
+        font_size: 70
+        center_x: root.width/2
+        top: root.top - 50
+        text: str(root.score)
+
     WhackMole:
         id: whack_mole
         center: self.parent.center
+
