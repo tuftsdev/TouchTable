@@ -71,6 +71,8 @@ class WhackGame(Widget):
           self.score += 1
           self.toggle()
           self.mole.hit = False
+          Clock.unschedule(self.toggle)
+          Clock.schedule_once(self.toggle, random.uniform(1,3))
 
     def move_mole(self):
         hole_num = random.randint(0, len(self.holes)-1)
