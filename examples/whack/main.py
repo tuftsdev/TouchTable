@@ -1,4 +1,4 @@
-mport kivy
+import kivy
 kivy.require('1.1.1')
 
 from kivy.app import App
