@@ -1,5 +1,5 @@
 # 
-# Pytouch
+# Pytouch - Python~TUIO toolkit
 # 
 # 
 
@@ -46,6 +46,7 @@ setup(
     #ext_modules=ext_modules, # WILL NEED THESE EXT. MODULES
     packages=[
         'pytouch',
-        'pytouch.core'],
+        'pytouch.input',
+        'pytouch.input.providers'],
     package_dir={'pytouch': 'pytouch'}
 )
