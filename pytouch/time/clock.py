@@ -1,11 +1,9 @@
-
-__all__ = ('Clock')
-
+import pygame
 from pygame.time import *
 
 class Clock():
-    def __init__(self, clock):
-        self.clock = clock
+    def __init__(self):
+        self.clock = pygame.time.Clock()
 
     def tick(framerate):
         self.clock.tick(framerate)
@@ -21,3 +19,5 @@ class Clock():
 
     def get_fps():
         return self.clock.get_fps()
+
+def 
