@@ -1,5 +1,7 @@
 __all__ = ["Clock"]
 
+from pygame.time import *
+
 def get_ticks():
     return pygame.time.get_ticks()
 
