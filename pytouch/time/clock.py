@@ -19,5 +19,3 @@ class Clock():
 
     def get_fps():
         return self.clock.get_fps()
-
-def 
