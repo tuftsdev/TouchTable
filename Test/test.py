@@ -5,7 +5,7 @@ print "list functions to access tracked objects:", tracking.get_helpers()
 try:
     while 1:
         tracking.update()
-        for obj in tracking.objects():
-            print obj
+        for obj in tracking.cursors():
+            print obj.mot_accel
 except KeyboardInterrupt:
     tracking.stop()
