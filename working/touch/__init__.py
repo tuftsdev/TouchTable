@@ -3,11 +3,14 @@ import pytuio, pygame
 class TouchTracker(object):
   def __init__(self):
     self.tuioTracker = pytuio.Tracking()
+    self.curSessionId = 0
 
   def update(self):
     self.tuioTracker.update()
     for obj in self.tuioTracker.cursors():
-      print "Tuio: ", obj.xpos, obj.ypos
+      if obj.sessionid != self.curSessionId:
+        self.curSessionId = obj.sessionid
+        print "Tuio: ", obj.xpos, obj.ypos
     event = pygame.event.poll()
     if event.type == pygame.QUIT:
       pygame.quit()
