@@ -35,3 +35,4 @@ class Rectangle(object):
     self.color = pygame.Color(color)
     self.draw()
 
+

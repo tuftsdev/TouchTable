@@ -1,4 +1,5 @@
-import pygame, touch, rectangle
+import sys
+import pygame, touch, pyobject
 from pygame.locals import *
 
 
@@ -21,7 +22,7 @@ class PyTouch(object):
   def drawRect(self, x, y, width, height, color='white', edge_thickness=0, surface=None):
     if surface == None:
       surface = self.screen
-    newRect = rectangle.Rectangle(surface,x,y,width,height,color,edge_thickness)
+    newRect = pyobject.Rectangle(surface,x,y,width,height,color,edge_thickness)
     self.objects.append(newRect)
     return newRect
 
