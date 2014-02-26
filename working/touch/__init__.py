@@ -1,4 +1,4 @@
-import pytuio, pygame
+import pytuio, pygame, sys
 
 class TouchTracker(object):
   def __init__(self):
@@ -14,6 +14,7 @@ class TouchTracker(object):
     event = pygame.event.poll()
     if event.type == pygame.QUIT:
       pygame.quit()
+      sys.exit()
     elif event.type == pygame.MOUSEBUTTONDOWN:
       print "Mouse: ", event.pos
 
