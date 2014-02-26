@@ -1,9 +1,11 @@
 import pytuio, pygame, sys
 
 class TouchTracker(object):
-  def __init__(self):
+  def __init__(self, window_width, window_height):
     self.tuioTracker = pytuio.Tracking()
     self.curSessionId = 0
+    self.window_width = window_width
+    self.window_height = window_height
 
   def update(self):
     self.tuioTracker.update()
@@ -16,7 +18,7 @@ class TouchTracker(object):
       pygame.quit()
       sys.exit()
     elif event.type == pygame.MOUSEBUTTONDOWN:
-      print "Mouse: ", event.pos
+      print "Mouse: ", event.pos[0] * self.window_width, event.pos[1] * self.window_height
 
 # Testing Framework
 if __name__ == '__main__':
