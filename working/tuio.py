@@ -2,6 +2,7 @@ import socket, OSC
 from OSC import *
 import provider
 from provider import *
+from collections import deque
 
 class TuioMotionEventProvider(MotionEventProvider):
 
@@ -27,10 +28,16 @@ class TuioMotionEventProvider(MotionEventProvider):
             self.ip, self.port = args.split(':')
             self.port = int(self.port)
         self.oschandler = None
+        self.tuio_event_q = deque()
+        self.handlers = {}
+        self.touches = {}
 
     def start(self):
         self.oschandler = osc.listen(self.ip, self.port)
-        for path in 
+    
+    def update(self, dispatch):
+        osc.readQueue(self.oscid)
+        
 
 
     def getIP(self):
@@ -38,6 +45,8 @@ class TuioMotionEventProvider(MotionEventProvider):
 
     def getPort(self):
         return self.port
+
+
 
 
 '''

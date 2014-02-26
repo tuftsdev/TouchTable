@@ -1,10 +1,11 @@
 # TO EDIT
-__all__ = (
-    'init')
+__all__ = []
 
 __version__ = '0.0.1'
 
-import sys
+import pygame
 
 def init():
     pygame.init()
+
+    

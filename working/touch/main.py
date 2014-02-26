@@ -1,11 +1,6 @@
 import pytuio, pygame
 
 
-
-
-
-
-
 # Testing Framework
 if __name__ == '__main__':
     tracking = pytuio.Tracking()
@@ -13,6 +8,7 @@ if __name__ == '__main__':
     print "list functions to access tracked objects:", tracking.get_helpers()
     try:
         while 1:
+            
             tracking.update()
             for obj in tracking.cursors():
                 print obj.mot_accel
