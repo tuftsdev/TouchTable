@@ -15,6 +15,6 @@ if __name__ == '__main__':
         while 1:
             tracking.update()
             for obj in tracking.cursors():
-                print obj.mot_accel
+                print 'Sesh: ', obj.sessionid, ' X: ', obj.xpos, ' Y: ', obj.ypos
     except KeyboardInterrupt:
         tracking.stop()
