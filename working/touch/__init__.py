@@ -12,13 +12,13 @@ class TouchTracker(object):
     for obj in self.tuioTracker.cursors():
       if obj.sessionid != self.curSessionId:
         self.curSessionId = obj.sessionid
-        print "Tuio: ", obj.xpos, obj.ypos
+        print "Tuio: ", obj.xpos * self.window_width, obj.ypos * self.window_height
     event = pygame.event.poll()
     if event.type == pygame.QUIT:
       pygame.quit()
       sys.exit()
     elif event.type == pygame.MOUSEBUTTONDOWN:
-      print "Mouse: ", event.pos[0] * self.window_width, event.pos[1] * self.window_height
+      print "Mouse: ", event.pos
 
 # Testing Framework
 if __name__ == '__main__':
