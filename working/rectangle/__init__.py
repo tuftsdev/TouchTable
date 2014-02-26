@@ -15,14 +15,23 @@ class Rectangle(object):
   def draw(self):
     pygame.draw.rect(self.surface, self.color, self.box, self.edge_thickness)
 
+  def move(self, x, y):
+    self.changeColor('white')
+    self.box = self.box.move(x-self.x, y-self.y)
+    self.changeColor('blue')
+    self.draw()
+    self.x = x
+    self.y = y
+
   def touchUpInside(self, touch):
     if(touch.xpos >= self.box.left and touch.xpos <= self.box.right and touch.ypos >= self.box.top and touch.ypos <= self.box.bottom):
-      return self.touchUpInsideHandler(touch,self)
+      self.touchUpInsideHandler(touch,self)
+      return True
+
+  def touchUpInsideHandler(self, touch, extra=None):
+    return True
 
   def changeColor(self, color):
     self.color = pygame.Color(color)
     self.draw()
 
-
-  def touchUpInsideHandler(self, touch, extra=None):
-    return True
