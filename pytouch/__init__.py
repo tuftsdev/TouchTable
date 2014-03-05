@@ -19,6 +19,11 @@ class PyTouch(object):
         obj.touchUpInside(t)
     pygame.display.flip()
 
+  def redraw(self, obj_ignore=None):
+    for obj in self.objects:
+      if obj != obj_ignore:
+        obj.draw()
+
   def drawRect(self, x, y, width, height, color='white', edge_thickness=0, surface=None):
     if surface == None:
       surface = self.screen
