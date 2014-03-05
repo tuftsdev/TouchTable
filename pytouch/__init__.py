@@ -17,6 +17,8 @@ class PyTouch(object):
     if t != None:
       for obj in self.objects:
         obj.touchUpInside(t)
+    self.clear()
+    self.redraw()
     pygame.display.flip()
 
   def redraw(self, obj_ignore=None):
