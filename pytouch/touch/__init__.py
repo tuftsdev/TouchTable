@@ -38,11 +38,13 @@ class TouchTracker(object):
         else:
           self.curTuioClick.time_held += 1
           if self.curTuioClick.time_held == 20:
-            self.curTuioClick.status = "hold"
+            self.curTuioClick.status = "holding"
+          elif self.curTuioClick.time_held > 20:
+            self.curTuioClick.status = "held"
         return self.curTuioClick
     b = pygame.mouse.get_pressed()
     event = pygame.event.poll()
-    if event.type == pygame.QUIT:
+    if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
       pygame.quit()
       sys.exit()
     elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -59,9 +61,9 @@ class TouchTracker(object):
       else:
         self.curMouseClick.time_held += 1
         if(self.curMouseClick.time_held == 20):
-          self.curMouseClick.status = "hold"
+          self.curMouseClick.status = "holding"
         elif self.curMouseClick.time_held > 20:
-          self.curMouseClick.status = "clicked"
+          self.curMouseClick.status = "held"
       return self.curMouseClick
     else:
       if self.curMouseClick is not None:

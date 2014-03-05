@@ -25,7 +25,7 @@ class Rectangle(object):
     if(touch.xpos >= self.box.left and touch.xpos <= self.box.right and touch.ypos >= self.box.top and touch.ypos <= self.box.bottom):
       if touch.status == "dragging":
         self.dragHandler(touch,self)
-      elif touch.status == "hold":
+      elif touch.status == "holding":
         self.holdHandler(touch,self)
       elif touch.status == "clicked":
         self.touchUpInsideHandler(touch,self)

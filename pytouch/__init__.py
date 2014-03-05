@@ -6,8 +6,8 @@ from pygame.locals import *
 class PyTouch(object):
   def __init__(self, bgcolor=(0,0,0)):
     pygame.init()
-    self.screen = pygame.display.set_mode((800,600))
-    self.touchTracker = touch.TouchTracker(800,600)
+    self.screen = pygame.display.set_mode((800,600), pygame.FULLSCREEN)
+    self.touchTracker = touch.TouchTracker(pygame.display.Info().current_w,pygame.display.Info().current_h)
     self.objects = []
     self.bgcolor = bgcolor
     self.clear()
