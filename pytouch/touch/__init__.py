@@ -7,9 +7,10 @@ class Touch(object):
     self.origin = origin
     self.sessionid = sessionid
     self.status = "clicked"
+    self.time_held = 0
 
   def __str__(self):
-    return "xpos: " + str(self.xpos) + ", ypos: " + str(self.ypos) + ", origin: " + self.origin + ", sessionid: " + str(self.sessionid) + ", status: " + self.status
+    return "xpos: " + str(self.xpos) + ", ypos: " + str(self.ypos) + ", origin: " + self.origin + ", sessionid: " + str(self.sessionid) + ", status: " + self.status + ", time: " + str(self.time_held)
 
 class TouchTracker(object):
   def __init__(self, window_width, window_height):
@@ -32,9 +33,12 @@ class TouchTracker(object):
         if self.curTuioClick.xpos != obj.xpos or self.curTuioClick.ypos != obj.ypos:
           self.curTuioClick.xpos = obj.xpos
           self.curTuioClick.ypos = obj.ypos
+          self.curTuioClick.time_held = 0
           self.curTuioClick.status = "dragging"
         else:
-          self.curTuioClick.status = "hold"
+          self.curTuioClick.time_held += 1
+          if self.curTuioClick.time_held == 20:
+            self.curTuioClick.status = "hold"
         return self.curTuioClick
     b = pygame.mouse.get_pressed()
     event = pygame.event.poll()
@@ -50,9 +54,14 @@ class TouchTracker(object):
       if self.curMouseClick.xpos != x or self.curMouseClick.ypos != y:
         self.curMouseClick.xpos = x
         self.curMouseClick.ypos = y
+        self.curMouseClick.time_held = 0
         self.curMouseClick.status = "dragging"
       else:
-        self.curMouseClick.status = "hold"
+        self.curMouseClick.time_held += 1
+        if(self.curMouseClick.time_held == 20):
+          self.curMouseClick.status = "hold"
+        elif self.curMouseClick.time_held > 20:
+          self.curMouseClick.status = "clicked"
       return self.curMouseClick
     else:
       if self.curMouseClick is not None:

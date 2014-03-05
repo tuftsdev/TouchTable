@@ -36,12 +36,16 @@ class Rectangle(object):
 
   def dragHandler(self, touch, extra=None):
     return True
-  
+
   def holdHandler(self, touch, extra=None):
     return True
 
   def changeColor(self, color):
     self.color = pygame.Color(color)
+    self.draw()
+
+  def changeColor(self, r, g, b, a):
+    self.color = pygame.Color(r,g,b,a)
     self.draw()
 
 
