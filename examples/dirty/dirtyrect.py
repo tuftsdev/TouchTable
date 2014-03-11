@@ -13,8 +13,11 @@ class App():
         self.screen = pygame.display.set_mode((self.SCREEN_WIDTH,self.SCREEN_HEIGHT))
         pygame.display.set_caption('Dirty Rect Test')
 
+        self.color = "black"
         self.base = pygame.Surface(self.screen.get_size()).convert()
         self.base.fill((0,0,0))
+        self.basewhite = pygame.Surface(self.screen.get_size()).convert()
+        self.basewhite.fill((255,255,255))
 
         self.clock = pygame.time.Clock()
 
@@ -35,7 +38,6 @@ class App():
         self.image_x = 50
         self.image_y = 50
 
-
         self.screen.blit(self.base, (0,0))
         self.screen.blit(self.image, (self.image_x, self.image_y))
         pygame.display.flip()
@@ -55,26 +57,59 @@ class App():
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+                if event.key == pygame.K_d:
+                    if self.color == "white":
+                        self.color = "black"
+                    else:
+                        self.color = "white"
                 elif event.key == pygame.K_UP:
                     self.dirty.append(pygame.Rect(self.image_x, self.image_y, 
                                                   self.image_rect.width, self.image_rect.height))
-                    self.image_y = self.image_y - 50
+                    if self.color == "white":
+                        new_surface = self.basewhite.subsurface((self.image_x, self.image_y,
+                                                        self.image_rect.width, self.image_rect.height))
+                    else:
+                        new_surface = self.base.subsurface((self.image_x, self.image_y,
+                                                        self.image_rect.width, self.image_rect.height))
+                    self.screen.blit(new_surface, (self.image_x, self.image_y))
+                    self.image_y = self.image_y - 150
                 elif event.key == pygame.K_DOWN:
                     self.dirty.append(pygame.Rect(self.image_x, self.image_y, 
                                                   self.image_rect.width, self.image_rect.height))
-                    self.image_y = self.image_y + 50
+                    if self.color == "white":
+                        new_surface = self.basewhite.subsurface((self.image_x, self.image_y,
+                                                        self.image_rect.width, self.image_rect.height))
+                    else:
+                        new_surface = self.base.subsurface((self.image_x, self.image_y,
+                                                        self.image_rect.width, self.image_rect.height))
+                    self.screen.blit(new_surface, (self.image_x, self.image_y))
+                    self.image_y = self.image_y + 150
                 elif event.key == pygame.K_LEFT:
                     self.dirty.append(pygame.Rect(self.image_x, self.image_y, 
                                                   self.image_rect.width, self.image_rect.height))
-                    self.image_x = self.image_x - 50
+                    if self.color == "white":
+                        new_surface = self.basewhite.subsurface((self.image_x, self.image_y,
+                                                        self.image_rect.width, self.image_rect.height))
+                    else:
+                        new_surface = self.base.subsurface((self.image_x, self.image_y,
+                                                        self.image_rect.width, self.image_rect.height))
+                    self.screen.blit(new_surface, (self.image_x, self.image_y))
+                    self.image_x = self.image_x - 150
                 elif event.key == pygame.K_RIGHT:
                     self.dirty.append(pygame.Rect(self.image_x, self.image_y, 
                                                   self.image_rect.width, self.image_rect.height))
-                    self.image_x = self.image_y + 50
-        
-        self.screen.blit(self.base, (0,0))
+                    if self.color == "white":
+                        new_surface = self.basewhite.subsurface((self.image_x, self.image_y,
+                                                        self.image_rect.width, self.image_rect.height))
+                    else:
+                        new_surface = self.base.subsurface((self.image_x, self.image_y,
+                                                        self.image_rect.width, self.image_rect.height))
+                    self.screen.blit(new_surface, (self.image_x, self.image_y))
+                    self.image_x = self.image_y + 150
         self.screen.blit(self.image, (self.image_x, self.image_y))
-        pygame.display.update(self.dirty)
+        pygame.display.update(pygame.Rect(self.image_x, self.image_y, self.image_rect.width, self.image_rect.height))
+        #pygame.display.update(self.dirty)
+        #pygame.display.update([])
         self.dirty = []
 
 
