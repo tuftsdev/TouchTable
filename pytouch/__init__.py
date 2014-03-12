@@ -10,13 +10,22 @@ class PyTouch(object):
     self.touchTracker = touch.TouchTracker(pygame.display.Info().current_w,pygame.display.Info().current_h)
     self.objects = []
     self.bgcolor = bgcolor
+    self.draggedObject = None
     self.clear()
 
   def update(self):
     t = self.touchTracker.update()
     if t != None:
-      for obj in self.objects:
-        obj.touchUpInside(t)
+      if self.draggedObject is not None and t.status == "dragging":
+        self.draggedObject.dragHandler(t, self.draggedObject)
+      else:
+        for obj in self.objects:
+          if obj.touchUpInside(t):
+            if t.status == "dragging":
+              self.draggedObject = obj
+            else:
+              self.draggedObject = None
+            break
     self.clear()
     self.redraw()
     pygame.display.flip()

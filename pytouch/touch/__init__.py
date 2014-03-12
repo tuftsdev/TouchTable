@@ -1,5 +1,9 @@
 import pytuio, pygame, sys
 
+# Set hold time to variable and think about system calls
+# add comments!
+
+
 class Touch(object):
   def __init__(self, xpos, ypos, origin, sessionid):
     self.xpos = xpos
