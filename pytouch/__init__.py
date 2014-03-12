@@ -12,28 +12,41 @@ class PyTouch(object):
     self.touchTracker = touch.TouchTracker(pygame.display.Info().current_w,pygame.display.Info().current_h)
     self.objects = []
     self.bgcolor = bgcolor
+    self.draggedObject = None
     self.clear()
 
   def update(self):
     t = self.touchTracker.update()
     if t != None:
-      for obj in self.objects:
-        obj.touchUpInside(t)
+      if self.draggedObject is not None and t.status == "dragging":
+        self.draggedObject.dragHandler(t, self.draggedObject)
+      else:
+        for obj in self.objects:
+          if obj.touchUpInside(t):
+            if t.status == "dragging":
+              self.draggedObject = obj
+            else:
+              self.draggedObject = None
+            break
     self.clear()
     self.redraw()
+    self.sortObjects()
     pygame.display.flip()
 
   def redraw(self, obj_ignore=None):
-    for obj in self.objects:
+    for obj in reversed(self.objects):
       if obj != obj_ignore:
         obj.draw()
 
-  def drawRect(self, x, y, width, height, color='white', edge_thickness=0, surface=None):
+  def drawRect(self, x, y, width, height, color='white',z_index=0, edge_thickness=0, surface=None):
     if surface == None:
       surface = self.screen
-    newRect = pyobject.Rectangle(surface,x,y,width,height,color,edge_thickness)
+    newRect = pyobject.Rectangle(surface,x,y,width,height,color,z_index,edge_thickness)
     self.objects.append(newRect)
     return newRect
+
+  def sortObjects(self):
+    self.objects = sorted(self.objects, key=lambda obj: obj.z_index, reverse=True)
 
   def clear(self):
     self.screen.fill(self.bgcolor)
