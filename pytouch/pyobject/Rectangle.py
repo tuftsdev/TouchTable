@@ -45,22 +45,13 @@ class Rectangle(object):
   def holdHandler(self, touch, extra=None):
     return True
 
-<<<<<<< HEAD
-  def changeColor(self, color):
-    self.color = pygame.Color(color)
-    self.draw()
-
-    self.dirty = True
-
   def changeColor(self, r, g, b, a):
     self.color = pygame.Color(r,g,b,a)
-=======
   def changeColor(self, color, g=None, b=None, a=None):
     if g is None or b is None or a is None:
       self.color = pygame.Color(color)
     else:
       self.color = pygame.Color(color,g,b,a)
->>>>>>> 9ea4266ba364147e568060fbdeed4369cfc4f2a4
     self.draw()
 
     self.dirty = True
