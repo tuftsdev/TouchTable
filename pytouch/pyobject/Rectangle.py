@@ -1,11 +1,12 @@
 import pygame
 
 class Rectangle(object):
-  def __init__(self, surface, x, y, width, height, color='white', edge_thickness=0):
+  def __init__(self, surface, x, y, width, height, color='white', z_index=0, edge_thickness=0):
     self.box = pygame.Rect(x, y, width, height)
     self.surface = surface
     self.x = x
     self.y = y
+    self.z_index = z_index
     self.width = width
     self.height = height
     self.color = pygame.Color(color)

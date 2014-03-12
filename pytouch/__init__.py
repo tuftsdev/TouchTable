@@ -28,19 +28,23 @@ class PyTouch(object):
             break
     self.clear()
     self.redraw()
+    self.sortObjects()
     pygame.display.flip()
 
   def redraw(self, obj_ignore=None):
-    for obj in self.objects:
+    for obj in reversed(self.objects):
       if obj != obj_ignore:
         obj.draw()
 
-  def drawRect(self, x, y, width, height, color='white', edge_thickness=0, surface=None):
+  def drawRect(self, x, y, width, height, color='white',z_index=0, edge_thickness=0, surface=None):
     if surface == None:
       surface = self.screen
-    newRect = pyobject.Rectangle(surface,x,y,width,height,color,edge_thickness)
+    newRect = pyobject.Rectangle(surface,x,y,width,height,color,z_index,edge_thickness)
     self.objects.append(newRect)
     return newRect
+
+  def sortObjects(self):
+    self.objects = sorted(self.objects, key=lambda obj: obj.z_index, reverse=True)
 
   def clear(self):
     self.screen.fill(self.bgcolor)
