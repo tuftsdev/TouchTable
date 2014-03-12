@@ -2,6 +2,8 @@ import sys
 import pygame, touch, pyobject
 from pygame.locals import *
 
+def init():
+    return PyTouch()
 
 class PyTouch(object):
   def __init__(self, bgcolor=(0,0,0)):

@@ -12,6 +12,8 @@ class Rectangle(object):
     self.edge_thickness = edge_thickness
     self.draw()
 
+    self.dirty = False
+
   def draw(self):
     pygame.draw.rect(self.surface, self.color, self.box, self.edge_thickness)
 
@@ -20,6 +22,8 @@ class Rectangle(object):
     self.draw()
     self.x = x
     self.y = y
+
+    self.dirty = True
 
   def touchUpInside(self, touch):
     if(touch.xpos >= self.box.left and touch.xpos <= self.box.right and touch.ypos >= self.box.top and touch.ypos <= self.box.bottom):
@@ -44,8 +48,12 @@ class Rectangle(object):
     self.color = pygame.Color(color)
     self.draw()
 
+    self.dirty = True
+
   def changeColor(self, r, g, b, a):
     self.color = pygame.Color(r,g,b,a)
     self.draw()
+
+    self.dirty = True
 
 

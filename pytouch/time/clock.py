@@ -1,4 +1,3 @@
-import pygame
 from pygame.time import *
 
 class Clock():
