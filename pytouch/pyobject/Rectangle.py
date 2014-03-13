@@ -29,11 +29,11 @@ class Rectangle(object):
   def touchUpInside(self, touch):
     if(touch.xpos >= self.box.left and touch.xpos <= self.box.right and touch.ypos >= self.box.top and touch.ypos <= self.box.bottom):
       if touch.status == "dragging":
-        self.dragHandler(touch,self)
+        self.dragHandler(self,touch)
       elif touch.status == "holding":
-        self.holdHandler(touch,self)
+        self.holdHandler(self,touch)
       elif touch.status == "clicked":
-        self.touchUpInsideHandler(touch,self)
+        self.touchUpInsideHandler(self,touch)
       return True
 
   def touchUpInsideHandler(self, touch, extra=None):

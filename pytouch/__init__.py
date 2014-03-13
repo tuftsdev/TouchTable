@@ -1,5 +1,5 @@
 import sys
-import pygame, touch, pyobject
+import pygame, touch, pyobject, image
 from pygame.locals import *
 
 def init():
@@ -19,7 +19,7 @@ class PyTouch(object):
     t = self.touchTracker.update()
     if t != None:
       if self.draggedObject is not None and t.status == "dragging":
-        self.draggedObject.dragHandler(t, self.draggedObject)
+        self.draggedObject.dragHandler(self.draggedObject, t)
       else:
         for obj in self.objects:
           if obj.touchUpInside(t):
