@@ -19,8 +19,10 @@ class PyObject(object):
         pass
 
     def move(self, x, y):
-        pass
-
+        self.rect = self.rect.move(x - self.x, y - self.y)
+        self.x = x
+        self.y = y
+        
     def touchInside(self, touch):
         if(touch.xpos >= self.rect.left and touch.xpos <= self.rect.right and touch.ypos >= self.rect.top and touch.ypos <= self.rect.bottom):
             if touch.status == "dragging":

@@ -18,7 +18,14 @@ if __name__ == "__main__":
   rect.holdHandler = hold_handler
   
   rect2 = pytouch.drawRect(400,400,60,100,drag_enabled=True,color='blue')
-  rect2.dragHandler = drag_handler
+  #rect2.dragHandler = drag_handler
   rect2.holdHandler = hold_handler
+
+  image = pytouch.drawImage("pysnake.png", 50, 50)
+  image.dragHandler = drag_handler
+  image.convert()
+
+  image = pytouch.drawImage("pysnake.png", 150, 150, drag_enabled=True)
+  image.convert()
   while 1:
     pytouch.update()

@@ -4,18 +4,13 @@ from pyobject import *
 class Rectangle(PyObject):
 
     def __init__(self, x, y, width, height, z_index=0,drag_enabled=False, color='white', edge_thickness=0):
-        super(Rectangle,self).__init__(x, y, width, height, z_index,drag_enabled)
+        super(Rectangle,self).__init__(x, y, width, height, z_index, drag_enabled)
 
         self.color = pygame.Color(color)
         self.edge_thickness = edge_thickness
 
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, self.rect, self.edge_thickness)
-
-    def move(self, x, y):
-        self.rect = self.rect.move(x - self.x, y - self.y)
-        self.x = x
-        self.y = y
 
     def changeColor(self, r, g, b, a):
         self.color = pygame.Color(r,g,b,a)

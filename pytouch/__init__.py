@@ -1,5 +1,5 @@
 import sys
-import pygame, touch, pyobject, image
+import pygame, touch, pyobject
 from pygame.locals import *
 
 def init():
@@ -42,6 +42,11 @@ class PyTouch(object):
     newRect = pyobject.Rectangle(x,y,width,height,z_index,drag_enabled,color,edge_thickness)
     self.objects.append(newRect)
     return newRect
+
+  def drawImage(self, image, x, y, z_index=0, drag_enabled=False):
+    newImage = pyobject.Image(image, x, y, z_index, drag_enabled)
+    self.objects.append(newImage)
+    return newImage
 
   def sortObjects(self):
     self.objects = sorted(self.objects, key=lambda obj: obj.z_index, reverse=True)
