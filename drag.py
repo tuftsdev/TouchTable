@@ -12,13 +12,13 @@ def hold_handler(self, touch):
 
 if __name__ == "__main__":
   pytouch = pytouch.PyTouch()
-
-  rect = pytouch.drawRect(300,300,50,50,'white')
+  
+  rect = pytouch.drawRect(300,300,50,50,drag_enabled=True,color='white')
   rect.dragHandler = drag_handler
   rect.holdHandler = hold_handler
-
-  rect2 = pytouch.drawRect(400,400,60,100, 'blue',z_index=10)
-  #rect2.dragHandler = drag_handler
+  
+  rect2 = pytouch.drawRect(400,400,60,100,drag_enabled=True,color='blue')
+  rect2.dragHandler = drag_handler
   rect2.holdHandler = hold_handler
   while 1:
     pytouch.update()

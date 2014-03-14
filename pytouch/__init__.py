@@ -22,7 +22,7 @@ class PyTouch(object):
         self.draggedObject.dragHandler(self.draggedObject, t)
       else:
         for obj in self.objects:
-          if obj.touchUpInside(t):
+          if obj.touchInside(t):
             if t.status == "dragging":
               self.draggedObject = obj
             else:
@@ -36,12 +36,10 @@ class PyTouch(object):
   def redraw(self, obj_ignore=None):
     for obj in reversed(self.objects):
       if obj != obj_ignore:
-        obj.draw()
+        obj.draw(self.screen)
 
-  def drawRect(self, x, y, width, height, color='white',z_index=0, edge_thickness=0, surface=None):
-    if surface == None:
-      surface = self.screen
-    newRect = pyobject.Rectangle(surface,x,y,width,height,color,z_index,edge_thickness)
+  def drawRect(self, x, y, width, height, z_index=0,drag_enabled=False,color='white', edge_thickness=0):
+    newRect = pyobject.Rectangle(x,y,width,height,z_index,drag_enabled,color,edge_thickness)
     self.objects.append(newRect)
     return newRect
 
