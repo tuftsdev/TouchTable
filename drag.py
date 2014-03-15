@@ -27,5 +27,9 @@ if __name__ == "__main__":
 
   image = pytouch.drawImage("pysnake.png", 150, 150, drag_enabled=True)
   image.convert()
+
+  text = pytouch.drawText(500, 500, "hello world!", 30, (255,255,255), drag_enabled=True)
+
+
   while 1:
     pytouch.update()

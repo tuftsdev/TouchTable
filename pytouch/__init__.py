@@ -48,6 +48,11 @@ class PyTouch(object):
     self.objects.append(newImage)
     return newImage
 
+  def drawText(self, x, y, text, fontsize, fontcolor, font=None, aa=1, z_index=0, drag_enabled=False):
+    newText = pyobject.Text(x, y, text, fontsize, fontcolor, font, aa, z_index, drag_enabled)
+    self.objects.append(newText)
+    return newText
+
   def sortObjects(self):
     self.objects = sorted(self.objects, key=lambda obj: obj.z_index, reverse=True)
 
