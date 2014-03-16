@@ -15,4 +15,3 @@ class Text(PyObject):
 
     def draw(self, surface):
         surface.blit(self.textrender, (self.x, self.y))
-
