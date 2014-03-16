@@ -13,22 +13,22 @@ def hold_handler(self, touch):
 if __name__ == "__main__":
   pytouch = pytouch.PyTouch()
   
-  rect = pytouch.drawRect(300,300,50,50,drag_enabled=True,color='white')
+  rect = pytouch.Rect(300,300,50,50,drag_enabled=True,color='white')
   rect.dragHandler = drag_handler
   rect.holdHandler = hold_handler
   
-  rect2 = pytouch.drawRect(400,400,60,100,drag_enabled=True,color='blue')
+  rect2 = pytouch.Rect(400,400,60,100,drag_enabled=True,color='blue')
   #rect2.dragHandler = drag_handler
   rect2.holdHandler = hold_handler
 
-  image = pytouch.drawImage("pysnake.png", 50, 50)
+  image = pytouch.Image("pysnake.png", 50, 50)
   image.dragHandler = drag_handler
   image.convert()
 
-  image = pytouch.drawImage("pysnake.png", 150, 150, drag_enabled=True)
+  image = pytouch.Image("pysnake.png", 150, 150, drag_enabled=True)
   image.convert()
 
-  text = pytouch.drawText(500, 500, "hello world!", 30, (255,255,255), drag_enabled=True)
+  text = pytouch.Text(500, 500, "hello world!", 30, (255,255,255), drag_enabled=True)
 
 
   while 1:

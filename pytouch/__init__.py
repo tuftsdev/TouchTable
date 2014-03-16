@@ -38,17 +38,17 @@ class PyTouch(object):
       if obj != obj_ignore:
         obj.draw(self.screen)
 
-  def drawRect(self, x, y, width, height, z_index=0,drag_enabled=False,color='white', edge_thickness=0):
+  def Rect(self, x, y, width, height, z_index=0,drag_enabled=False,color='white', edge_thickness=0):
     newRect = pyobject.Rectangle(x,y,width,height,z_index,drag_enabled,color,edge_thickness)
     self.objects.append(newRect)
     return newRect
 
-  def drawImage(self, image, x, y, z_index=0, drag_enabled=False):
+  def Image(self, image, x, y, z_index=0, drag_enabled=False):
     newImage = pyobject.Image(image, x, y, z_index, drag_enabled)
     self.objects.append(newImage)
     return newImage
 
-  def drawText(self, x, y, text, fontsize, fontcolor, font=None, aa=1, z_index=0, drag_enabled=False):
+  def Text(self, x, y, text, fontsize, fontcolor, font=None, aa=1, z_index=0, drag_enabled=False):
     newText = pyobject.Text(x, y, text, fontsize, fontcolor, font, aa, z_index, drag_enabled)
     self.objects.append(newText)
     return newText
