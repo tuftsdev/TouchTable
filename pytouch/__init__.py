@@ -38,10 +38,15 @@ class PyTouch(object):
       if obj != obj_ignore:
         obj.draw(self.screen)
 
-  def Rect(self, x, y, width, height, z_index=0,drag_enabled=False,color='white', edge_thickness=0):
-    newRect = pyobject.Rectangle(x,y,width,height,z_index,drag_enabled,color,edge_thickness)
+  def Rect(self, x, y, width, height, z_index=0, drag_enabled=False, color='white', edge_thickness=0):
+    newRect = pyobject.Rectangle(x, y, width, height, z_index, drag_enabled, color, edge_thickness)
     self.objects.append(newRect)
     return newRect
+
+  def Circle(self, center, radius, z_index=0, drag_enabled=False, color='white', edge_thickness=0):
+    newCircle = pyobject.Circle(center, radius, z_index, drag_enabled, color, edge_thickness)
+    self.objects.append(newCircle)
+    return newCircle
 
   def Image(self, image, x, y, z_index=0, drag_enabled=False):
     newImage = pyobject.Image(image, x, y, z_index, drag_enabled)

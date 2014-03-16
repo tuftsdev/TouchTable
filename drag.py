@@ -30,6 +30,8 @@ if __name__ == "__main__":
 
   text = pytouch.Text(500, 500, "hello world!", 30, (255,255,255), drag_enabled=True)
 
+  circle = pytouch.Circle((150,150), 50, drag_enabled=True)
+  circle.holdHandler = hold_handler
 
   while 1:
     pytouch.update()
