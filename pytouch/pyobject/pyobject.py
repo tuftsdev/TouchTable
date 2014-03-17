@@ -79,7 +79,6 @@ class PyObject(object):
         if self.drag_enabled:
             self.move(touch.xpos - self.width/2, touch.ypos - self.height/2)
 
-
     def holdHandler(self, obj, touch, extra=None):
         pass
 

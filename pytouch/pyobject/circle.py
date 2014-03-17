@@ -16,14 +16,15 @@ class Circle(PyObject):
     def draw(self, surface):
         pygame.draw.circle(surface, self.color, self.center, self.radius, self.edge_thickness)
 
-    def dragHandler(self, obj, touch, extra=None):
-        if self.drag_enabled:
-            self.move(touch.xpos, touch.ypos)
-
     def move(self, x, y):
+        self.rect = self.rect.move(x-self.center[0], y - self.center[1])
         self.center = (x, y)
         self.x = x - self.radius
         self.y = y - self.radius
+
+    def dragHandler(self, obj, touch, extra=None):
+        if self.drag_enabled:
+            self.move(touch.xpos, touch.ypos)
 
     def changeColor(self, r, g, b, a):
         self.color = pygame.Color(r,g,b,a)
