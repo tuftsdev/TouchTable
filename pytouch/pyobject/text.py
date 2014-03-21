@@ -5,6 +5,10 @@ class Text(PyObject):
 
     def __init__(self, x, y, text, fontsize, fontcolor, font=None, aa=1, z_index=0, drag_enabled=False):
         self.text = text
+        self.fontsize = fontsize
+        self.fontcolor = fontcolor
+        self.font = font
+        self.aa = aa
         if font == None:
             self.font = pygame.font.Font(None, fontsize)
         else:
@@ -15,3 +19,7 @@ class Text(PyObject):
 
     def draw(self, surface):
         surface.blit(self.textrender, (self.x, self.y))
+
+    def changeText(self, text):
+        self.textrender = self.font.render(text, self.aa, self.fontcolor)
+        self.text_rect = self.textrender.get_rect()

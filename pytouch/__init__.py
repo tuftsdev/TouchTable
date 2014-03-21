@@ -28,14 +28,21 @@ class PyTouch(object):
             else:
               self.draggedObject = None
             break
+    i = 0
+    for obj in self.objects:
+      if obj.active:
+        obj.update(obj)
+      else:
+        self.objects.pop(i)
+      i += 1
     self.clear()
     self.redraw()
     self.sortObjects()
     pygame.display.flip()
 
-  def redraw(self, obj_ignore=None):
+  def redraw(self):
     for obj in reversed(self.objects):
-      if obj != obj_ignore:
+      if obj.visible:
         obj.draw(self.screen)
 
   def Rect(self, x, y, width, height, z_index=0, drag_enabled=False, color='white', edge_thickness=0):
@@ -53,7 +60,7 @@ class PyTouch(object):
     self.objects.append(newImage)
     return newImage
 
-  def Text(self, x, y, text, fontsize, fontcolor, font=None, aa=1, z_index=0, drag_enabled=False):
+  def Text(self, x, y, text, fontsize, fontcolor=(255,255,255), font=None, aa=1, z_index=0, drag_enabled=False):
     newText = pyobject.Text(x, y, text, fontsize, fontcolor, font, aa, z_index, drag_enabled)
     self.objects.append(newText)
     return newText

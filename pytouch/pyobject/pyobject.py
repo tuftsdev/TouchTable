@@ -48,11 +48,12 @@ class PyObject(object):
         self.rect = pygame.Rect(x, y, width, height)
         self.drag_enabled = drag_enabled
         self.visible = True
+        self.active = True
 
     def draw(self):
         pass
 
-    def update(self):
+    def update(self, obj):
         pass
 
     def move(self, x, y):
@@ -62,6 +63,9 @@ class PyObject(object):
 
     def setVisible(self, visible):
         self.visible = visible
+
+    def remove(self):
+        self.active = False
 
     # EVENT HANDLING
     # ==============
@@ -84,3 +88,17 @@ class PyObject(object):
 
     def touchUpInsideHandler(self, obj, touch, extra=None):
         pass
+
+    # OBJECT COLLISION
+    # ================
+    def collide(self, obj):
+        if self.rect.colliderect(obj.rect):
+            return True
+        else:
+            return False
+
+    def collidelist(self, objList):
+        return self.rect.collidelist(objList)
+
+    def collidelistall(self, objList):
+        return self.rect.collidelistall(objList)
