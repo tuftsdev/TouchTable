@@ -35,12 +35,22 @@ class Ship():
     def shipDragHandler(self, obj, touch, extra=None):
         # Can't use self because it still thinks it is the ship that
         # you are referring to
-        if touch.xpos + obj.width > 780:
-            obj.move(730, touch.ypos - obj.height/2)
-        elif touch.xpos < 50:
-            obj.move(0, touch.ypos - obj.height/2)
+        if touch.xpos + obj.width/2 > 780:
+            x = 730
+        elif touch.xpos < 25:
+            x = 0
         else:
-            obj.move(touch.xpos - obj.width/2, touch.ypos - obj.height/2)
+            x = touch.xpos - obj.width/2
+
+        if touch.ypos + obj.height/2 > 600:
+            y = 550
+        elif touch.ypos < 25:
+            y = 0
+        else:
+            y = touch.ypos - obj.height/2
+
+        obj.move(x, y)
+
 
     # Self refers to SHIP class, obj refers to PYOBJECT class
     def update(self, obj):
@@ -154,6 +164,8 @@ if __name__ == "__main__":
             background2.z_index = 2
 
             # Reset game
+            score = 0
+            scoretext.changeText("Score: " + str(score))
             for enemy in enemies:
                 enemy.obj.remove()
             enemies = []
