@@ -8,11 +8,9 @@ import pytouch
 import random
 
 class Bullet():
-
     def __init__(self, x, y):
         self.obj = pytouch.Image("bullet.png", x, y, z_index = 1)
         self.obj.update = self.update
-
         self.active = True
 
     def update(self, obj):
@@ -70,6 +68,7 @@ class Ship():
                 bullet.obj.setVisible(False)
                 bullet.obj.remove()
                 self.bullets.pop(i)
+                i -= 1 # Prevent skipping of objects during check
             i += 1
 
         if self.hit:
@@ -107,12 +106,30 @@ if __name__ == "__main__":
     gameover.setVisible(False)
     gameover.move(400 - gameover.rect.width/2, 300 - gameover.rect.height/2)
 
-    ship = Ship()
+    title = pytouch.Text(0,0, "PIXEL SHOOTER", 60, z_index = 3)
+    title.setVisible(False)
+    title.move(400 - title.rect.width/2, 300 - title.rect.height/2)
+
+    ship = None
     enemies = []
 
     score = 0
     scoretext = pytouch.Text(0, 0, "Score: " + str(score), 30, z_index = 1)
 
+    # Title Screen
+    background1.z_index = 2
+    background2.z_index = 2
+    title.setVisible(True)
+    while True:
+        t = pytouch.touchTracker.update()
+        if t != None and t.status == "clicked":
+            background1.z_index = 0
+            background2.z_index = 0
+            title.setVisible(False)
+            ship = Ship()
+            break
+        else:
+            pytouch.update()
     while True:
         pytouch.update()
 
@@ -137,8 +154,10 @@ if __name__ == "__main__":
                 if bullet.obj.collide(enemy.obj):
                     bullet.obj.remove()
                     ship.bullets.pop(i)
+                    i -= 1
                     enemy.obj.remove()
                     enemies.pop(j)
+                    j -= 1
 
                     score += 10
                     scoretext.changeText("Score: " + str(score))
@@ -153,9 +172,11 @@ if __name__ == "__main__":
                 ship.hit = True
                 enemy.obj.remove()
                 enemies.pop(i)
+                i -= 1
             if enemy.obj.y > 650:
                 enemy.obj.remove()
                 enemies.pop(i)
+                i -= 1
             i += 1
 
         if ship.hp <= 0:
@@ -186,6 +207,3 @@ if __name__ == "__main__":
                     break
                 else:
                     pytouch.update()
-
-
-
