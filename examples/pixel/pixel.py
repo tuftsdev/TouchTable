@@ -183,10 +183,8 @@ if __name__ == "__main__":
             gameover.setVisible(True)
             background1.z_index = 2
             background2.z_index = 2
-
+            scoretext.z_index = 3
             # Reset game
-            score = 0
-            scoretext.changeText("Score: " + str(score))
             for enemy in enemies:
                 enemy.obj.remove()
             enemies = []
@@ -200,6 +198,9 @@ if __name__ == "__main__":
                 # Hack to get touches TODO
                 t = pytouch.touchTracker.update()
                 if t != None and t.status == "clicked":
+                    score = 0
+                    scoretext.changeText("Score: " + str(score))
+                    scoretext.z_index = 0
                     ship = Ship()
                     background1.z_index = 0
                     background2.z_index = 0
