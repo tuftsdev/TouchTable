@@ -35,6 +35,14 @@ Methods
                                    by default
         touchUpInsideHandler(obj, touch) => handles "clicked" events,
                                             undefined by default
+    collide(obj): Checks collision of self and given object's rects.
+                  Object must have a rect (type pygame.Rect)
+    collidelist(objlist): Checks collision of self and list of objects.
+                          Returns index of first object which collides
+                          with self, else returns -1.
+    collidelistall(objlist): Checks collision of self and list of objects,
+                             Returns a list of all indices which collides
+                             with self, else returns an empty list.
 '''
 class PyObject(object):
     def __init__(self, x, y, width, height, z_index=0,drag_enabled=False):
