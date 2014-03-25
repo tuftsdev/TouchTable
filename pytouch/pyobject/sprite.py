@@ -2,7 +2,7 @@ import pygame
 from pyobject import *
 
 class SpriteAnim(PyObject):
-    def __init__(self, image, x, y, frame_x, frame_y, frame_width, frame_height, z_index=0, drag_enabled=False):
+    def __init__(self, image, x, y, frame_x, frame_y, frame_width, frame_height, delay=5, z_index=0, drag_enabled=False):
         self.image = pygame.image.load(image)
 
     # Initial frame
@@ -14,6 +14,8 @@ class SpriteAnim(PyObject):
 
         self.playing = False
         self.repeat = False
+        self.delay = delay # Switch frame every x frames
+        self.delay_counter = 0
 
         self.frame_width = frame_width
         self.frame_height = frame_height
@@ -33,7 +35,10 @@ class SpriteAnim(PyObject):
                 if not self.repeat:
                     self.playing = False
             else:
-                self.curr_frame += 1
+                if self.delay_counter == self.delay:
+                    self.curr_frame += 1
+                else:
+                    self.delay_counter += 1
 # Stores unaltered update function.  If a new update function is to be
 # defined, call _update at the end
     _update = update
@@ -60,6 +65,12 @@ class SpriteAnim(PyObject):
     def setCurrentFrame(self, x):
         self.curr_frame = x
 
+    def setDelay(self, delay):
+        self.delay = delay
+
+    def isPlaying(self):
+        return self.playing
+
     def convert_alpha(self):
         self.image.convert_alpha()
 
@@ -67,3 +78,4 @@ class SpriteAnim(PyObject):
         self.image.convert_alpha()
         for frame in self.framelist:
             frame.convert_alpha()
+
