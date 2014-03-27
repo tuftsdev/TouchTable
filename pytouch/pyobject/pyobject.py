@@ -100,10 +100,8 @@ class PyObject(object):
     # OBJECT COLLISION
     # ================
     def collide(self, obj):
-        if self.rect.colliderect(obj.rect):
-            return True
-        else:
-            return False
+        return self.rect.colliderect(obj.rect)
+
 
     def collidelist(self, objList):
         return self.rect.collidelist(objList)
