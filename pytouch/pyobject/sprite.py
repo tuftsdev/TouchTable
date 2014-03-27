@@ -36,6 +36,7 @@ class SpriteAnim(PyObject):
                     self.playing = False
             else:
                 if self.delay_counter == self.delay:
+                    self.delay_counter = 0
                     self.curr_frame += 1
                 else:
                     self.delay_counter += 1
