@@ -1,5 +1,7 @@
 import pygame
 
+
+class PyObject(object):
 '''
 PyObject: Base class for all PyTouch objects.  
 
@@ -44,8 +46,7 @@ Methods
                              Returns a list of all indices which collides
                              with self, else returns an empty list.
 '''
-class PyObject(object):
-    def __init__(self, x, y, width, height, z_index=0,drag_enabled=False):
+    def __init__(self, x, y, width, height, z_index=0, drag_enabled=False):
         if self.__class__ == PyObject:
             raise NotImplementedError('PyObject is abstract')
         self.x = x
@@ -101,7 +102,6 @@ class PyObject(object):
     # ================
     def collide(self, obj):
         return self.rect.colliderect(obj.rect)
-
 
     def collidelist(self, objList):
         return self.rect.collidelist(objList)

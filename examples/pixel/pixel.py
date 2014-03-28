@@ -17,16 +17,13 @@ class Bullet():
         obj.move(obj.x, obj.y - 5)
 
 class Ship():
-
     def __init__(self):
         self.obj = pytouch.Image("ship.png", 375, 500, z_index = 1)
         self.obj.dragHandler = self.shipDragHandler
         self.obj.update = self.update
-
         self.hp = 100
         self.hit = False
         self.hpbar = pytouch.Rect(780, 0, 20, 600, color='red', z_index = 1)
-
         self.counter = 0
         self.bullets = []
 
@@ -110,6 +107,10 @@ if __name__ == "__main__":
     title.setVisible(False)
     title.move(400 - title.rect.width/2, 300 - title.rect.height/2)
 
+    title2 = pytouch.Text(0,0, "Tap to Begin", 15, z_index = 3)
+    title2.setVisible(False)
+    title2.move(400 - title2.rect.width/2, 350 - title.rect.height/2)
+
     ship = None
     enemies = []
 
@@ -120,12 +121,14 @@ if __name__ == "__main__":
     background1.z_index = 2
     background2.z_index = 2
     title.setVisible(True)
+    title2.setVisible(True)
     while True:
         t = pytouch.touchTracker.update()
         if t != None and t.status == "clicked":
             background1.z_index = 0
             background2.z_index = 0
             title.setVisible(False)
+            title2.setVisible(False)
             ship = Ship()
             break
         else:
@@ -200,11 +203,29 @@ if __name__ == "__main__":
                 if t != None and t.status == "clicked":
                     score = 0
                     scoretext.changeText("Score: " + str(score))
-                    scoretext.z_index = 0
-                    ship = Ship()
+                    scoretext.z_index = 1
                     background1.z_index = 0
                     background2.z_index = 0
                     gameover.setVisible(False)
                     break
                 else:
                     pytouch.update()
+            scoretext.setVisible(False)
+            # Title Screen
+            background1.z_index = 2
+            background2.z_index = 2
+            title.setVisible(True)
+            title2.setVisible(True)
+            while True:
+                t = pytouch.touchTracker.update()
+                if t != None and t.status == "clicked":
+                    background1.z_index = 0
+                    background2.z_index = 0
+                    title.setVisible(False)
+                    title2.setVisible(False)
+                    scoretext.setVisible(True)
+                    ship = Ship()
+                    break
+                else:
+                    pytouch.update()
+

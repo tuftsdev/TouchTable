@@ -17,7 +17,7 @@ if __name__ == "__main__":
   rect.dragHandler = drag_handler
   rect.holdHandler = hold_handler
   
-  rect2 = pytouch.Rect(400,400,60,100,drag_enabled=True,color='blue')
+  rect2 = pytouch.Rect(400,400,60,100,drag_enabled=True,color='blue',z_index=10)
   #rect2.dragHandler = drag_handler
   rect2.holdHandler = hold_handler
 

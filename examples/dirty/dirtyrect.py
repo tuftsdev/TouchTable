@@ -38,8 +38,19 @@ class App():
         self.image_x = 50
         self.image_y = 50
 
+        font = pygame.font.Font(None, 30)
+        mesg = font.render("Hai", 1, (255,255,255))
+
+        mesg_rect = mesg.get_rect()
+        print mesg_rect
+
+        font2 = pygame.font.SysFont("monospace", 15)
+        mesg2 = font2.render("Hello!", 1, (255,255,255))
+
         self.screen.blit(self.base, (0,0))
         self.screen.blit(self.image, (self.image_x, self.image_y))
+        self.screen.blit(mesg, (500, 500))
+        self.screen.blit(mesg2, (300, 300))
         pygame.display.flip()
 
     def run(self):
