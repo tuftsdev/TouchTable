@@ -98,7 +98,7 @@ if __name__ == "__main__":
     pytouch = pytouch.init()
 
     background1 = pytouch.Image("background.png", 0, 0, z_index = 0)
-    background2 = pytouch.Image("background.png", 0, -600, z_index = 0)
+    background2 = pytouch.Image("background.png", 0, -pytouch.screen_h, z_index = 0)
     background1.update = bgupdate
     background2.update = bgupdate
 
