@@ -2,7 +2,7 @@ import pygame
 
 
 class PyObject(object):
-'''
+    '''
 PyObject: Base class for all PyTouch objects.  
 
 Variables
@@ -45,7 +45,7 @@ Methods
     collidelistall(objlist): Checks collision of self and list of objects,
                              Returns a list of all indices which collides
                              with self, else returns an empty list.
-'''
+    '''
     def __init__(self, x, y, width, height, z_index=0, drag_enabled=False):
         if self.__class__ == PyObject:
             raise NotImplementedError('PyObject is abstract')
