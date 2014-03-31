@@ -7,6 +7,9 @@ sys.path.insert(0,parentdir)
 import pytouch
 import random
 
+SCREEN_W = 0
+SCREEN_H = 0
+
 class Bullet():
     def __init__(self, x, y):
         self.obj = pytouch.Image("bullet.png", x, y, z_index = 1)
@@ -18,27 +21,27 @@ class Bullet():
 
 class Ship():
     def __init__(self):
-        self.obj = pytouch.Image("ship.png", 375, 500, z_index = 1)
+        self.obj = pytouch.Image("ship.png", SCREEN_W/2-25, SCREEN_H - 100, z_index = 1)
         self.obj.dragHandler = self.shipDragHandler
         self.obj.update = self.update
         self.hp = 100
         self.hit = False
-        self.hpbar = pytouch.Rect(780, 0, 20, 600, color='red', z_index = 1)
+        self.hpbar = pytouch.Rect(SCREEN_W-20, 0, 20, SCREEN_H, color='red', z_index = 1)
         self.counter = 0
         self.bullets = []
 
     def shipDragHandler(self, obj, touch, extra=None):
         # Can't use self because it still thinks it is the ship that
         # you are referring to
-        if touch.xpos + obj.width/2 > 780:
-            x = 730
+        if touch.xpos + obj.width/2 > SCREEN_W-20:
+            x = SCREEN_W-20-self.obj.width
         elif touch.xpos < 25:
             x = 0
         else:
             x = touch.xpos - obj.width/2
 
-        if touch.ypos + obj.height/2 > 600:
-            y = 550
+        if touch.ypos + obj.height/2 > SCREEN_H:
+            y = SCREEN_H-self.obj.height
         elif touch.ypos < 25:
             y = 0
         else:
@@ -71,7 +74,7 @@ class Ship():
         if self.hit:
             self.hit = False
             self.hp -= 10
-            self.hpbar.move(self.hpbar.x, self.hpbar.y + 60)
+            self.hpbar.move(self.hpbar.x, self.hpbar.y + SCREEN_H/10)
 
     def shoot(self):
         self.bullets.append(Bullet(self.obj.x + 20, self.obj.y))
@@ -85,14 +88,19 @@ class Enemy():
         obj.move(obj.x, obj.y + 2)
 
 def bgupdate(obj):
-    if obj.y == 590:
-        obj.y = -590
+    if obj.y == SCREEN_H - 10:
+        obj.y = -(SCREEN_H - 10)
     else:
         obj.move(0, obj.y + 1)
 
 if __name__ == "__main__":
     random.seed()
     pytouch = pytouch.init()
+
+    #global SCREEN_W
+    #global SCREEN_H
+    SCREEN_W = pytouch.screen_w
+    SCREEN_H = pytouch.screen_h
 
     background1 = pytouch.Image("background.png", 0, 0, z_index = 0)
     background2 = pytouch.Image("background.png", 0, -pytouch.screen_h, z_index = 0)
@@ -101,15 +109,15 @@ if __name__ == "__main__":
 
     gameover = pytouch.Text(0, 0, "GAME OVER", 60, z_index = 3)
     gameover.setVisible(False)
-    gameover.move(400 - gameover.rect.width/2, 300 - gameover.rect.height/2)
+    gameover.move(SCREEN_W/2 - gameover.rect.width/2, SCREEN_H/2 - gameover.rect.height/2)
 
     title = pytouch.Text(0,0, "PIXEL SHOOTER", 60, z_index = 3)
     title.setVisible(False)
-    title.move(400 - title.rect.width/2, 300 - title.rect.height/2)
+    title.move(SCREEN_W/2 - title.rect.width/2, SCREEN_H/2 - title.rect.height/2)
 
     title2 = pytouch.Text(0,0, "Tap to Begin", 15, z_index = 3)
     title2.setVisible(False)
-    title2.move(400 - title2.rect.width/2, 350 - title.rect.height/2)
+    title2.move(SCREEN_W/2 - title2.rect.width/2, SCREEN_H/2 + 50 - title.rect.height/2)
 
     ship = None
     enemies = []
@@ -139,7 +147,7 @@ if __name__ == "__main__":
         # Attempt to spawn an enemy
         if random.randint(0,100) > 95:
             spawn = True
-            newEnemy = Enemy(random.randint(0,730))
+            newEnemy = Enemy(random.randint(0,SCREEN_W-20-50))
             for enemy in enemies:
                 if enemy.obj.collide(newEnemy.obj):
                     spawn = False
@@ -176,7 +184,7 @@ if __name__ == "__main__":
                 enemy.obj.remove()
                 enemies.pop(i)
                 i -= 1
-            if enemy.obj.y > 650:
+            if enemy.obj.y > SCREEN_H + 50 :
                 enemy.obj.remove()
                 enemies.pop(i)
                 i -= 1
