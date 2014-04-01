@@ -5,13 +5,15 @@ score = 0
 scoretext = None
 SCREEN_W = 0
 SCREEN_H = 0
+RESIZE = False
 
 def touch_handler(obj, touch):
-  global score, scoretex, SCREEN_W, SCREEN_H
+  global score, scoretex, SCREEN_W, SCREEN_H, RESIZE
   if obj.enabled:
     obj.enabled = False
     obj.change_image('mole_hit.png')
-    obj.resize(SCREEN_W/5,SCREEN_H/5)
+    if RESIZE:
+      obj.resize(SCREEN_W/5,SCREEN_H/5)
     score += 10
     scoretext.changeText("Score: " + str(score))
 
@@ -26,11 +28,14 @@ if __name__ == "__main__":
   for i in range(0, 3):
     for j in range(0, 3):
       hole = pytouch.Image("hole.png", j*SCREEN_W/5+j*OFFSET_W, i*SCREEN_H/5+i*OFFSET_H)
-      hole.resize(SCREEN_W/5, SCREEN_H/5)
+      if SCREEN_W/hole.image_rect.width < 5:
+        RESIZE = True
+        hole.resize(SCREEN_W/5, SCREEN_H/5)
   x = random.randint(0,2)
   y = random.randint(0,2)
   mole = pytouch.Image("mole_cartoon.png", x*SCREEN_W/5+x*OFFSET_W, y*SCREEN_H/5+y*OFFSET_H, z_index = 5)
-  mole.resize(SCREEN_W/5, SCREEN_H/5)
+  if RESIZE:
+    mole.resize(SCREEN_W/5, SCREEN_H/5)
   mole.touchUpInsideHandler = touch_handler
 
   timer_max = random.randint(50,100)
@@ -43,7 +48,8 @@ if __name__ == "__main__":
       mole.move(x*SCREEN_W/5+x*OFFSET_W, y*SCREEN_H/5+y*OFFSET_H)
     elif timer == 1:
       mole.change_image('mole_cartoon.png')
-      mole.resize(SCREEN_W/5, SCREEN_H/5)
+      if RESIZE:
+        mole.resize(SCREEN_W/5, SCREEN_H/5)
       mole.enabled = True
       mole.touchUpInsideHandler = touch_handler
     timer += 1
