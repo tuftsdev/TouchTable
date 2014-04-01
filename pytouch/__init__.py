@@ -8,8 +8,10 @@ def init():
 class PyTouch(object):
     def __init__(self, bgcolor=(0,0,0)):
         pygame.init()
-        self.screen = pygame.display.set_mode((800,600), pygame.FULLSCREEN)
-        self.touchTracker = touch.TouchTracker(pygame.display.Info().current_w,pygame.display.Info().current_h)
+        self.screen_w = pygame.display.Info().current_w
+        self.screen_h = pygame.display.Info().current_h
+        self.screen = pygame.display.set_mode((self.screen_w,self.screen_h), pygame.FULLSCREEN)
+        self.touchTracker = touch.TouchTracker(self.screen_w,self.screen_h)
         self.objects = []
         self.bgcolor = bgcolor
         self.draggedObject = None
@@ -45,8 +47,8 @@ class PyTouch(object):
             if obj.visible:
                 obj.draw(self.screen)
 
-    def Rect(self, x, y, width, height, z_index=0, drag_enabled=False, color='white', edge_thickness=0):
-        newRect = pyobject.Rectangle(x, y, width, height, z_index, drag_enabled, color, edge_thickness)
+    def Rect(self, x, y, width, height, color='white', alpha=None, z_index=0, drag_enabled=False, edge_thickness=0):
+        newRect = pyobject.Rectangle(x, y, width, height, color, alpha, z_index, drag_enabled, edge_thickness)
         self.objects.append(newRect)
         return newRect
 

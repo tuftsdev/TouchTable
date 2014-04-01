@@ -1,19 +1,21 @@
 import pygame
 
-'''
-PyObject: Base class for all PyTouch objects.  
+
+class PyObject(object):
+    '''
+PyObject: Base class for all PyTouch objects.
 
 Variables
 =========
     x: [int] x position of top-left corner
     y: [int] y position of top-left corner
-    z_index: [int] order of elements on the screen. Higher-numbered 
+    z_index: [int] order of elements on the screen. Higher-numbered
              objects are positioned above lower-numbered objects.
     width: [int] width (x) of the object
     height: [int] height (y) of the object
-    rect: [pygame.Rect] Pygame object which stores an object's 
+    rect: [pygame.Rect] Pygame object which stores an object's
           rectangular coordinates, used in drawing rectangular objects
-          and determining object collisions 
+          and determining object collisions
     drag_enabled: [bool] defaults to False. If true, uses the default
                   dragHandler
 
@@ -43,9 +45,8 @@ Methods
     collidelistall(objlist): Checks collision of self and list of objects,
                              Returns a list of all indices which collides
                              with self, else returns an empty list.
-'''
-class PyObject(object):
-    def __init__(self, x, y, width, height, z_index=0,drag_enabled=False):
+    '''
+    def __init__(self, x, y, width, height, z_index=0, drag_enabled=False):
         if self.__class__ == PyObject:
             raise NotImplementedError('PyObject is abstract')
         self.x = x
@@ -78,13 +79,14 @@ class PyObject(object):
     # EVENT HANDLING
     # ==============
     def touchInside(self, touch):
-        if(touch.xpos >= self.rect.left and touch.xpos <= self.rect.right and touch.ypos >= self.rect.top and touch.ypos <= self.rect.bottom):
+        if touch.xpos >= self.rect.left and touch.xpos <= self.rect.right and \
+           touch.ypos >= self.rect.top and touch.ypos <= self.rect.bottom:
             if touch.status == "dragging":
-                self.dragHandler(self,touch)
+                self.dragHandler(self, touch)
             elif touch.status == "holding":
-                self.holdHandler(self,touch)
+                self.holdHandler(self, touch)
             elif touch.status == "clicked":
-                self.touchUpInsideHandler(self,touch)
+                self.touchUpInsideHandler(self, touch)
             return True
 
     def dragHandler(self, obj, touch, extra=None):
@@ -101,7 +103,6 @@ class PyObject(object):
     # ================
     def collide(self, obj):
         return self.rect.colliderect(obj.rect)
-
 
     def collidelist(self, objList):
         return self.rect.collidelist(objList)
