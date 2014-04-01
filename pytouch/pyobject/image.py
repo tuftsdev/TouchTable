@@ -16,6 +16,10 @@ class Image(PyObject):
     def convert_alpha(self):
         self.image.convert_alpha()
 
+    def change_image(self, image):
+        self.image = pygame.image.load(image)
+        self.image_rect = self.image.get_rect()
+
     def resize(self, width, height):
         self.image = pygame.transform.scale(self.image, (width,height))
         self.image_rect = self.image.get_rect()
