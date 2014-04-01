@@ -10,6 +10,17 @@ import random
 SCREEN_W = 0
 SCREEN_H = 0
 
+class Star():
+    def __init__(self, x, y=-4):
+        self.WIDTH = 4
+        self.HEIGHT = 4
+        self.obj = pytouch.Rect(x, y, self.WIDTH, self.HEIGHT, color='white', alpha=random.randint(50, 255))
+        self.obj.update = self.update
+        self.active = True
+
+    def update(self, obj):
+        obj.move(obj.x, obj.y + 1)
+
 class Bullet():
     def __init__(self, x, y):
         self.obj = pytouch.Image("bullet.png", x, y, z_index = 1)
@@ -26,7 +37,7 @@ class Ship():
         self.obj.update = self.update
         self.hp = 100
         self.hit = False
-        self.hpbar = pytouch.Rect(SCREEN_W-20, 0, 20, SCREEN_H, color='red', z_index = 1)
+        self.hpbar = pytouch.Rect(SCREEN_W-20, 0, 20, SCREEN_H, color='red', alpha=None, z_index = 1)
         self.counter = 0
         self.bullets = []
 
@@ -87,25 +98,60 @@ class Enemy():
     def update(self, obj):
         obj.move(obj.x, obj.y + 2)
 
-def bgupdate(obj):
-    if obj.y == SCREEN_H - 10:
-        obj.y = -(SCREEN_H - 10)
-    else:
-        obj.move(0, obj.y + 1)
+def star_populate(stars):
+    i = -16
+    j = 0
+    while i < SCREEN_H:
+        j = 0
+        while j < SCREEN_W:
+            if random.randint(0, 100) > 99:
+                newStar = Star(j, i)
+                stars.append(newStar)
+            j += 8
+        i += 8
+    return stars
+
+def star_update(stars):
+    # Attempt to spawn a star
+    if random.randint(0,100) > 75:
+        spawn = True
+        newStar = Star(random.randint(0, SCREEN_W-4))
+        for star in stars:
+            if star.obj.collide(newStar.obj):
+                spawn = False
+                break
+        if spawn:
+            stars.append(newStar)
+        else:
+            newStar.obj.remove()
+
+    # Remove old stars
+    i = 0
+    for star in stars:
+        if star.obj.y > SCREEN_H + 4:
+            star.obj.remove()
+            stars.pop(i)
+            i -= 1
+        i += 1
+    return stars
 
 if __name__ == "__main__":
     random.seed()
     pytouch = pytouch.init()
 
-    #global SCREEN_W
-    #global SCREEN_H
     SCREEN_W = pytouch.screen_w
     SCREEN_H = pytouch.screen_h
 
+    '''
     background1 = pytouch.Image("background.png", 0, 0, z_index = 0)
-    background2 = pytouch.Image("background.png", 0, -pytouch.screen_h, z_index = 0)
+    background1.resize(SCREEN_W, SCREEN_H)
+    background2 = pytouch.Image("background.png", 0, -SCREEN_H, z_index = 0)
+    background2.resize(SCREEN_W, SCREEN_H)
     background1.update = bgupdate
     background2.update = bgupdate
+    background1.setVisible(False)
+    background2.setVisible(False)
+    '''
 
     gameover = pytouch.Text(0, 0, "GAME OVER", 60, z_index = 3)
     gameover.setVisible(False)
@@ -121,20 +167,23 @@ if __name__ == "__main__":
 
     ship = None
     enemies = []
+    stars = []
+    stars = star_populate(stars)
 
     score = 0
     scoretext = pytouch.Text(0, 0, "Score: " + str(score), 30, z_index = 1)
 
     # Title Screen
-    background1.z_index = 2
-    background2.z_index = 2
+    #background1.z_index = 2
+    #background2.z_index = 2
     title.setVisible(True)
     title2.setVisible(True)
     while True:
         t = pytouch.touchTracker.update()
+        stars = star_update(stars)
         if t != None and t.status == "clicked":
-            background1.z_index = 0
-            background2.z_index = 0
+            #background1.z_index = 0
+            #background2.z_index = 0
             title.setVisible(False)
             title2.setVisible(False)
             ship = Ship()
@@ -143,7 +192,7 @@ if __name__ == "__main__":
             pytouch.update()
     while True:
         pytouch.update()
-
+        stars = star_update(stars)
         # Attempt to spawn an enemy
         if random.randint(0,100) > 95:
             spawn = True
@@ -192,8 +241,10 @@ if __name__ == "__main__":
 
         if ship.hp <= 0:
             gameover.setVisible(True)
-            background1.z_index = 2
-            background2.z_index = 2
+            #background1.z_index = 2
+            #background2.z_index = 2
+            #background1.setVisible(True)
+            #background2.setVisible(True)
             scoretext.z_index = 3
             # Reset game
             for enemy in enemies:
@@ -208,27 +259,35 @@ if __name__ == "__main__":
             while True:
                 # Hack to get touches TODO
                 t = pytouch.touchTracker.update()
+                stars = star_update(stars)
                 if t != None and t.status == "clicked":
                     score = 0
                     scoretext.changeText("Score: " + str(score))
                     scoretext.z_index = 1
-                    background1.z_index = 0
-                    background2.z_index = 0
+                    #background1.z_index = 0
+                    #background2.z_index = 0
+                    #background1.setVisible(False)
+                    #background2.setVisible(False)
                     gameover.setVisible(False)
                     break
                 else:
                     pytouch.update()
             scoretext.setVisible(False)
             # Title Screen
-            background1.z_index = 2
-            background2.z_index = 2
+            #background1.z_index = 2
+            #background2.z_index = 2
+            #background1.setVisible(True)
+            #background2.setVisible(True)
             title.setVisible(True)
             title2.setVisible(True)
             while True:
                 t = pytouch.touchTracker.update()
+                stars = star_update(stars)
                 if t != None and t.status == "clicked":
-                    background1.z_index = 0
-                    background2.z_index = 0
+                    #background1.z_index = 0
+                    #background2.z_index = 0
+                    #background1.setVisible(False)
+                    #background2.setVisible(False)
                     title.setVisible(False)
                     title2.setVisible(False)
                     scoretext.setVisible(True)

@@ -47,8 +47,8 @@ class PyTouch(object):
             if obj.visible:
                 obj.draw(self.screen)
 
-    def Rect(self, x, y, width, height, z_index=0, drag_enabled=False, color='white', edge_thickness=0):
-        newRect = pyobject.Rectangle(x, y, width, height, z_index, drag_enabled, color, edge_thickness)
+    def Rect(self, x, y, width, height, color='white', alpha=None, z_index=0, drag_enabled=False, edge_thickness=0):
+        newRect = pyobject.Rectangle(x, y, width, height, color, alpha, z_index, drag_enabled, edge_thickness)
         self.objects.append(newRect)
         return newRect
 
