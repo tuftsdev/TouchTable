@@ -3,6 +3,10 @@ import pytuio, pygame, sys
 # Set hold time to variable and think about system calls
 # add comments!
 
+def iround(x):
+  y = round(x) - .5
+  return int(y) + (y > 0)
+
 
 class Touch(object):
     def __init__(self, xpos, ypos, origin, sessionid):
@@ -31,12 +35,14 @@ class TouchTracker(object):
         for obj in self.tuioTracker.cursors():
             if obj.sessionid != self.curSessionId:
                 self.curSessionId = obj.sessionid
-                self.curTuioClick = Touch(obj.xpos * self.window_width, obj.ypos * self.window_height, "Tuio", obj.sessionid)
+                x = iround(obj.xpos * self.window_width)
+                y = iround(obj.ypos * self.window_height)
+                self.curTuioClick = Touch(x,y, "Tuio", obj.sessionid)
                 return self.curTuioClick
             else:
-                if self.curTuioClick.xpos != obj.xpos or self.curTuioClick.ypos != obj.ypos:
-                    self.curTuioClick.xpos = obj.xpos
-                    self.curTuioClick.ypos = obj.ypos
+                if self.curTuioClick.xpos != iround(obj.xpos * self.window_width) or self.curTuioClick.ypos != iround(obj.ypos * self.window_height):
+                    self.curTuioClick.xpos = iround(obj.xpos * self.window_width)
+                    self.curTuioClick.ypos = iround(obj.ypos * self.window_height)
                     self.curTuioClick.time_held = 0
                     self.curTuioClick.status = "dragging"
                 else:
