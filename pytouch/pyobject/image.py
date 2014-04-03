@@ -1,4 +1,5 @@
 import pygame
+import os
 from pyobject import *
 
 class Image(PyObject):

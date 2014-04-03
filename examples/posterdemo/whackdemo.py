@@ -77,10 +77,12 @@ class WhackApp(object):
         for hole in self.holes:
             hole.remove()
         self.holes = []
-        self.scoretext.remove()
-        self.scoretext = None
-        self.quit.remove()
-        self.quit = None
+        if self.scoretext is not None:
+            self.scoretext.remove()
+            self.scoretext = None
+        if self.quit is not None:
+            self.quit.remove()
+            self.quit = None
 
 if __name__ == "__main__":
     w = WhackApp()

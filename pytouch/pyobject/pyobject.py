@@ -85,7 +85,7 @@ Methods
                 self.dragHandler(self, touch)
             elif touch.status == "holding":
                 self.holdHandler(self, touch)
-            elif touch.status == "clicked":
+            elif touch.status == "clicked" and touch.time_held == 1:
                 self.touchUpInsideHandler(self, touch)
             return True
 
