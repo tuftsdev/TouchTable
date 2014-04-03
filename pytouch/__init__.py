@@ -10,7 +10,7 @@ class PyTouch(object):
         pygame.init()
         self.screen_w = pygame.display.Info().current_w
         self.screen_h = pygame.display.Info().current_h
-        self.screen = pygame.display.set_mode((self.screen_w,self.screen_h))
+        self.screen = pygame.display.set_mode((self.screen_w,self.screen_h), pygame.FULLSCREEN)
         self.touchTracker = touch.TouchTracker(self.screen_w,self.screen_h)
         self.objects = []
         self.bgcolor = bgcolor
