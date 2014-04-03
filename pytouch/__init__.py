@@ -10,7 +10,7 @@ class PyTouch(object):
         pygame.init()
         self.screen_w = pygame.display.Info().current_w
         self.screen_h = pygame.display.Info().current_h
-        self.screen = pygame.display.set_mode((self.screen_w,self.screen_h), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((self.screen_w,self.screen_h))
         self.touchTracker = touch.TouchTracker(self.screen_w,self.screen_h)
         self.objects = []
         self.bgcolor = bgcolor
@@ -30,6 +30,8 @@ class PyTouch(object):
                         else:
                             self.draggedObject = None
                         break
+                    elif t.time_held == 0:
+                        self.touchedBackgroundHandler()
         i = 0
         for obj in self.objects:
             if obj.active:
@@ -41,6 +43,9 @@ class PyTouch(object):
         self.redraw()
         self.sortObjects()
         pygame.display.flip()
+
+    def touchedBackgroundHandler(self):
+        pass
 
     def redraw(self):
         for obj in reversed(self.objects):
