@@ -218,6 +218,7 @@ class PixelApp():
         self.running = True
 
         self.initgame()
+        t = pytouch.touchTracker.update()
         while self.running:
             self.titlescreen()
             self.gamescreen()
