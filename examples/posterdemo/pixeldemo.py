@@ -59,6 +59,13 @@ class Starfield():
                 self.stars.append(newStar)
             else:
                 newStar.obj.remove()
+        i = 0
+        for star in self.stars:
+            if star.obj.y > pytouch.screen_h + 4:
+                star.obj.remove()
+                self.stars.pop(i)
+                i -= 1
+            i += 1
             
     def clean(self):
         for star in self.stars:
