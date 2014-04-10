@@ -25,9 +25,13 @@ class App(object):
 
         self.running = True
 
-        self.whack_launcher = self.pytouch.Rect(100, 100, 300, 100, z_index=1)
+        #self.whack_launcher = self.pytouch.Rect(100, 100, 300, 100, z_index=1)
+        self.whack_launcher = self.pytouch.Text(0, 0, "Whack-A-Mole", 60, z_index=3)
+        self.whack_launcher.move(self.pytouch.screen_w/4 - self.whack_launcher.rect.width/2, self.pytouch.screen_h/2 - self.whack_launcher.rect.height/2)
         self.whack_launcher.touchUpInsideHandler = self.launch_whack
-        self.pixel_launcher = self.pytouch.Rect(500, 100, 300, 100, z_index=1)
+        #self.pixel_launcher = self.pytouch.Rect(500, 100, 300, 100, z_index=1)
+        self.pixel_launcher = self.pytouch.Text(0, 0, "Pixel Shooter", 60, z_index=3)
+        self.pixel_launcher.move(3 * self.pytouch.screen_w/4 - self.pixel_launcher.rect.width/2, self.pytouch.screen_h/2 - self.pixel_launcher.rect.height/2)
         self.pixel_launcher.touchUpInsideHandler = self.launch_pixel
 
         self.quit = self.pytouch.Text(self.pytouch.screen_w-120, 0, "QUIT", 60, z_index=1)
