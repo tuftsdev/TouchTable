@@ -126,17 +126,32 @@ class App(object):
 
         self.running = True
 
+        self.initbuttons()
+
+    def initbuttons(self):
         #self.whack_launcher = self.pytouch.Rect(100, 100, 300, 100, z_index=1)
         self.whack_launcher = self.pytouch.Text(0, 0, "Whack-A-Mole", 60, z_index=3)
         self.whack_launcher.move(self.pytouch.screen_w/4 - self.whack_launcher.rect.width/2, self.pytouch.screen_h/2 - self.whack_launcher.rect.height/2)
         self.whack_launcher.touchUpInsideHandler = self.launch_whack
+        self.whack_label = self.pytouch.Text(0, 0, "Touch title to begin", 30, z_index=3)
+        self.whack_label.move(self.pytouch.screen_w/4 - self.whack_label.width/2, self.pytouch.screen_h/2 - self.whack_label.height/2 + 50)
+
         #self.pixel_launcher = self.pytouch.Rect(500, 100, 300, 100, z_index=1)
         self.pixel_launcher = self.pytouch.Text(0, 0, "Pixel Shooter", 60, z_index=3)
         self.pixel_launcher.move(3 * self.pytouch.screen_w/4 - self.pixel_launcher.rect.width/2, self.pytouch.screen_h/2 - self.pixel_launcher.rect.height/2)
         self.pixel_launcher.touchUpInsideHandler = self.launch_pixel
+        self.pixel_label = self.pytouch.Text(0, 0, "Touch title to begin", 30, z_index=3)
+        self.pixel_label.move(3 * self.pytouch.screen_w/4 - self.pixel_label.width/2, self.pytouch.screen_h/2 - self.pixel_label.height/2 + 50)
 
         self.quit = self.pytouch.Text(self.pytouch.screen_w-120, 0, "QUIT", 60, z_index=1)
         self.quit.touchUpInsideHandler = self.exit
+
+    def destroybuttons(self):
+        self.whack_launcher.remove()
+        self.whack_label.remove()
+        self.pixel_launcher.remove()
+        self.pixel_label.remove()
+        self.quit.remove()
 
     def exit(self, obj, touch):
         self.running = False
@@ -150,9 +165,7 @@ class App(object):
             self.pytouch.update()
 
     def launch_whack(self, obj,touch):
-        self.whack_launcher.setVisible(False)
-        self.pixel_launcher.setVisible(False)
-        self.quit.setVisible(False)
+        self.destroybuttons()
 
         self.wb.clean()
         self.wb = None
@@ -164,14 +177,10 @@ class App(object):
         self.pb = PixelBackground(self.pytouch)
         self.wb = WhackBackground(self.pytouch)
 
-        self.whack_launcher.setVisible(True)
-        self.pixel_launcher.setVisible(True)
-        self.quit.setVisible(True)
+        self.initbuttons()
 
     def launch_pixel(self, obj,touch):
-        self.whack_launcher.setVisible(False)
-        self.pixel_launcher.setVisible(False)
-        self.quit.setVisible(False)
+        self.destroybuttons()
 
         self.wb.clean()
         self.wb = None
@@ -183,9 +192,7 @@ class App(object):
         self.pb = PixelBackground(self.pytouch)
         self.wb = WhackBackground(self.pytouch)
 
-        self.whack_launcher.setVisible(True)
-        self.pixel_launcher.setVisible(True)
-        self.quit.setVisible(True)
+        self.initbuttons()
 
 if __name__ == "__main__":
     app = App()
