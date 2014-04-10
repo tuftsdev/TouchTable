@@ -116,7 +116,7 @@ def star_update(stars):
     if random.randint(0,100) > 75:
         spawn = True
         newStar = Star(random.randint(0, SCREEN_W-4))
-        for star in stars:
+        for star in stars: # TODO DON'T NEED THIS
             if star.obj.collide(newStar.obj):
                 spawn = False
                 break
