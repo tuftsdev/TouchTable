@@ -26,11 +26,9 @@ class WhackApp(object):
         self.running = False
 
     def touch_handler(self, obj, touch):
-        if obj.enabled:
-            obj.enabled = False
-            obj.change_image('mole_hit.png')
-            self.score += 10
-            self.scoretext.changeText("Score: " + str(self.score))
+        obj.change_image('mole_hit.png')
+        self.score += 10
+        self.scoretext.changeText("Score: " + str(self.score))
 
     def reset(self):
         pass
@@ -67,7 +65,6 @@ class WhackApp(object):
                 mole.move(x * OFFSET_W + (x-1) * mole.width, y * p.screen_h/4 - mole.height/2)
             elif timer == 1:
                 mole.change_image("mole_cartoon.png")
-                mole.enabled = True
                 mole.touchUpInsideHandler = self.touch_handler # ???
             timer += 1
             p.update()
