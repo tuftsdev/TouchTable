@@ -91,8 +91,8 @@ Theme Styles
   background-color: rgba(189, 195, 199,.9);
 }
 
-.nav li:hover,
-.nav li a:hover,
+.navbar-nav li:hover,
+.navbar-nav li a:hover,
 .header-nav-item li:hover {
   background-color: rgba(189, 195, 199,.9);
 }
@@ -175,13 +175,23 @@ code {
 
 .sidebar-item a {
   margin-left: 40px;
+  line-height: 15px;
+  margin-top: 5px;
+  text-align: left;
   display: inline;
+}
+
+.sidebar-item a:hover {
+  border-left: 1px solid #2980b9;
+  color: #2980b9;
+  background-color: white !important;
 }
 
 .sidebar-item.active a {
   color: #2980b9;
   border-left: 2px solid #2980b9;
 }
+
 
 /*
 
