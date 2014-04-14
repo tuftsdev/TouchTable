@@ -30,5 +30,60 @@
         </li>
       </ul>
     </div>
+
+    <div class="content">
+      <div class="sidebar-wrapper">
+        <ul class="sidebar nav">
+          <li class="sidebar-item active">
+            <a href="#pytouch">pytouch</a>
+            <ul class="sidebar-sub-list nav">
+              <li class="sidebar-sub-item"><a href="#pytouch-update">update</a></li>
+              <li class="sidebar-sub-item"><a href="#pytouch-redraw">redraw</a></li>
+              <li class="sidebar-sub-item"><a href="#pytouch-clear">clear</a></li>
+            </ul>
+          </li>
+          <li class="sidebar-item"><a href="#touch">pytouch.touch</a></li>
+          <li class="sidebar-item"><a href="#pyobject">pytouch.object</a></li>
+        </ul>
+      </div>
+      <div class="main-content">
+        <div class="content-div">
+          <div class="content-sub-div" id="pytouch">
+            <h1>PyTouch SDK</h1>
+            <p>
+              PyTouch is an SDK developed in python with the intended purpose of creating 
+              applications for touch surfaces. PyTouch will also prepare you for developing 
+              for many other types of touch enabled devices since it follows many of the same 
+              design practices.
+            </p>
+          </div>
+          <br>
+          <div class="content-sub-div" id="pytouch-update">
+            <h3>update</h3>
+            <div class="api-description">
+              <p>
+                Update is used to refresh the application each frame. All changes to objects will 
+                come into effect after update is called.
+              </p>
+              <div class="highlight">
+                <pre>
+                  <code class="python">  import pytouch<br>  p = pytouch.init()<br>  while 1:<br>    p.update()</code>
+                </pre>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="content-sub-div" id="pytouch-redraw">
+            <h3>redraw</h3>
+          </div>
+          <div class="content-sub-div" id="pytouch-clear">
+            <h3>clear</h3>
+          </div>
+        </div>
+        <div class="content-div" id="touch">
+          <h1>Touch</h1>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
