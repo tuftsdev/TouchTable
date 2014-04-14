@@ -118,7 +118,7 @@ Theme Styles
   overflow-y: scroll;
 }
 
-.main-content div {
+.main-content > div {
   padding-top: 65px;
   padding-right: 40px;
 }
@@ -127,6 +127,29 @@ Theme Styles
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 20px;
+}
+
+.main-content a {
+  color: #2980b9;
+}
+
+.highlight {
+  font-family: 'Monaco', sans-serif;
+  font-size: 16px;
+}
+
+.end {
+  margin-bottom: -20px;
+}
+
+pre, code {
+    background-color: white;
+    font-family: monospace;
+}
+
+code {
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 

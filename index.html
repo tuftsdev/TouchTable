@@ -8,9 +8,11 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/solarized_dark.css">
     <script type="text/javascript" src="javascripts/jquery.min.js"></script>
     <script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
-
+    <script src="javascripts/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <title>PyTouch SDK</title>
   </head>
 
@@ -19,7 +21,7 @@
       <h1>PyTouch</h1>
       <ul class="header-nav nav navbar-nav">
         <li class="header-nav-item active">
-          <a href="">Getting Started</a>
+          <a href="/TouchTable/">Getting Started</a>
         </li>
         <li class="header-nav-item">
           <a href="docs">Documentation</a>
@@ -39,63 +41,75 @@
         </ul>
       </div>
       <div class="main-content">
-        <div id="introduction">
+        <div class="content-div" id="introduction">
           <h1>PyTouch SDK</h1>
           <p>
-             PyTouch is an SDK developed in python with the intended purpose of creating 
-             applications for touch surfaces. PyTouch will also prepare you for developing 
-             for many other types of touch enabled devices since it follows many of the same 
-             design specifications.
-           </p>
+            PyTouch is an SDK developed in python with the intended purpose of creating 
+            applications for touch surfaces. PyTouch will also prepare you for developing 
+            for many other types of touch enabled devices since it follows many of the same 
+            design practices.
+          </p>
         </div>
-        <div id="installation">
-          <h1>Getting Started</h1>
+        <div class="content-div" id="installation">
+          <h1>Installation</h1>
+          <p>
+            PyTouch requires <a href="http://pygame.org/news.html" target="_blank">pygame</a>
+            in order to function.  If you are on windows or linux you can just follow the instructions 
+            on pygame's <a href="http://pygame.org/news.html" target="_blank">website</a>.
+            <br><br>
+            In order to install on OSX, first you will need to install homebrew:
+          </p>
+          <div class="highlight">
+            <pre>
+              <code class="bash">  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"</code>
+            </pre>
+          </div>
+          <p>Next download <a href="http://www.pip-installer.org/en/latest/installing.html#install-pip">pip</a> 
+            and then run the following commands from the directory containing the file you downloaded:</p>
+          <div class="highlight">
+            <pre>
+              <code class="bash">  python get-pip.py
+  brew install mercurial</code>
+            </pre>
+          </div>
+          <p>Lastly you need to install a couple dependencies for pygame and pygame itself:</p>
+          <div class="highlight">
+            <pre>
+              <code class="bash">  brew install sdl sdl_image sdl_mixer sdl_ttf portmidi 
+  sudo pip install hg+http://bitbucket.org/pygame/pygame</code>
+            </pre>
+          </div>
+          <p>Now that you've installed pygame the final step is to install pytouch! So either click 
+          <a href="https://github.com/tuftsdev/TouchTable/zipball/master">here</a> to download the 
+          zip of the project or type the following command:</p>
+          <div class="highlight">
+            <pre>
+              <code class="bash">  git clone https://github.com/tuftsdev/TouchTable.git</code>
+            </pre>
+          </div>
+          <p>And in that directory type this:</p>
+          <div class="highlight end">
+            <pre>
+              <code class="bash">  python setup.py install</code>
+            </pre>
+          </div>
         </div>
-        <div id="first">
+        <div class="content-div" id="first">
           <h1>Your First App</h1>
+          <p>Great! You are now ready to start writing pytouch apps. Here is a simple example of an 
+            app which has a rectangel that you can click and drag around the screen.</p>
+          <div class="highlight">
+            <pre>
+              <code class="python">  import pytouch
+  if __name__ == "__main__":
+    p = pytouch.init()
+    p.Rect(50,100,100,300,drag_enabled=True)
+    while 1:
+      p.update()</code>
+            </pre>
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- HEADER -->
-    <!-- 
-    <div id="header_wrap" class="outer">
-      <header class="inner">
-        <a id="forkme_banner" href="https://github.com/tuftsdev/TouchTable">View on GitHub</a>
-
-        <h1 id="project_title">PyTouch SDK</h1>
-        <h2 id="project_tagline">App Development for Touch Surfaces</h2>
-
-        <section id="downloads">
-          <a class="zip_download_link" href="https://github.com/tuftsdev/TouchTable/zipball/master">Download this project as a .zip file</a>
-          <a class="tar_download_link" href="https://github.com/tuftsdev/TouchTable/tarball/master">Download this project as a tar.gz file</a>
-        </section>
-      </header>
-    </div>
-
-    -->
-
-    <!-- MAIN CONTENT -->
-    <!--
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h2>
-          <a name="touch-table-sdk" class="anchor" href="#touch-table-sdk"></a>Touch Table SDK</h2>
-
-        <p>Aaron Wishnick &amp; Andrew Li</p>
-
-        <p>Link to System Requirements: <a href="http://prezi.com/u9shfysyzhcb/?utm_campaign=share&amp;utm_medium=copy&amp;rc=ex0share">http://prezi.com/u9shfysyzhcb/?utm_campaign=share&amp;utm_medium=copy&amp;rc=ex0share</a></p>
-      </section>
-    </div>
-
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">PyTouch SDK maintained by <a href="https://github.com/tuftsdev">tuftsdev</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    --> 
-
   </body>
 </html>
