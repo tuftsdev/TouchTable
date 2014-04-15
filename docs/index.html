@@ -5,12 +5,14 @@
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="PyTouch SDK : App Development for Touch Surfaces" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/solarized_dark.css">
     <script type="text/javascript" src="../javascripts/jquery.min.js"></script>
     <script type="text/javascript" src="../javascripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../javascripts/main.js"></script>
     <script src="../javascripts/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <title>PyTouch SDK</title>
@@ -29,6 +31,9 @@
           <a href="support">Support</a>
         </li>
       </ul>
+      <div class="menu-wrapper">
+        <a class="menu">&#9776;</a>
+      </div>
     </div>
 
     <div class="content">
@@ -40,6 +45,7 @@
               <li class="sidebar-sub-item"><a href="#pytouch-update">update</a></li>
               <li class="sidebar-sub-item"><a href="#pytouch-redraw">redraw</a></li>
               <li class="sidebar-sub-item"><a href="#pytouch-clear">clear</a></li>
+              <li class="sidebar-sub-item"><a href="#pytouch-rect">Rect</a></li>
             </ul>
           </li>
           <li class="sidebar-item"><a href="#touch">pytouch.touch</a></li>
@@ -47,7 +53,7 @@
         </ul>
       </div>
       <div class="main-content">
-        <div class="content-div">
+        <div class="content-div top">
           <div class="content-sub-div" id="pytouch">
             <h1>PyTouch SDK</h1>
             <p>
@@ -70,18 +76,43 @@
                   <code class="python">  import pytouch<br>  p = pytouch.init()<br>  while 1:<br>    p.update()</code>
                 </pre>
               </div>
+              <p>
+                If any touches are received update will call any necessary callback functions.
+              </p>
             </div>
           </div>
           <br>
           <div class="content-sub-div" id="pytouch-redraw">
             <h3>redraw</h3>
+            <div class="api-description">
+              <p>
+                Redraw draws all objects in reverse order of their z_index, if no z_index was specified then it just 
+                draws objects in the reverse order in which they were created.  It will not draw any objects which 
+                have visibility turned off.
+              </p>
+            </div>
           </div>
           <div class="content-sub-div" id="pytouch-clear">
             <h3>clear</h3>
+            <div class="api-description">
+              <p>
+                Clear empties the screen of all objects but does not delete them, if redraw is called all 
+                of the objects will be placed back on the screen in their last positions or if they were 
+                moved in their new positions.
+            </div>
+          </div>
+          <div class="content-sub-div" id="pytouch-rect">
+            <h3>Rect(x, y, width, height, color, alpha, z_index, drag_enabled, edge_thickness)</h3>
+            <div class="api-description">
+              <p>
+                Rect calls the pyobject.rect constructor 
+            </div>
           </div>
         </div>
-        <div class="content-div" id="touch">
-          <h1>Touch</h1>
+        <div class="content-div">
+          <div class="content-sub-div" id="touch">
+            <h1>Touch</h1>
+          </div>
         </div>
       </div>
     </div>
