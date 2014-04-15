@@ -243,22 +243,6 @@ code {
   height: 400px;
 }
 
-.box-shadow-menu {
-  position: relative;
-  display: none;
-}
-.box-shadow-menu:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.5em;
-  width: 2em;
-  height: 0.3em;
-  background: black;
-  box-shadow: 
-    0 0.5em 0 0 black,
-    0 1em 0 0 black;
-}
 
 .menu-wrapper {
   background-color: white;
@@ -268,6 +252,7 @@ code {
   width: 40px;
   text-align: center;
   cursor: pointer;
+  display: none;
 }
 
 .menu {
@@ -281,8 +266,12 @@ code {
 @media (max-width: 768px) {
   .content {
     position: absolute;
-
   }
+
+  .menu-wrapper {
+    display: block;
+  }
+
   .sidebar,
   .sidebar-wrapper{
     position: static;
