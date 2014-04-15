@@ -5,7 +5,7 @@
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="PyTouch SDK : App Development for Touch Surfaces" />
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
@@ -46,65 +46,66 @@
         </ul>
       </div>
       <div class="main-content">
-        <div class="content-div" id="introduction">
-          <h1>PyTouch SDK</h1>
-          <p>
-            PyTouch is an SDK developed in python with the intended purpose of creating 
-            applications for touch surfaces. PyTouch will also prepare you for developing 
-            for many other types of touch enabled devices since it follows many of the same 
-            design practices.
-          </p>
-        </div>
-        <div class="content-div" id="installation">
-          <h1>Installation</h1>
-          <p>
-            PyTouch requires <a href="http://pygame.org/news.html" target="_blank">pygame</a>
-            in order to function.  If you are on windows or linux you can just follow the instructions 
-            on pygame's <a href="http://pygame.org/news.html" target="_blank">website</a>.
-            <br><br>
-            In order to install on OSX, first you will need to install homebrew:
-          </p>
-          <div class="highlight">
-            <pre>
+        <div class="content-div">
+          <div class="content-sub-div" id="introduction">
+            <h1>PyTouch SDK</h1>
+            <p>
+              PyTouch is an SDK developed in python with the intended purpose of creating 
+              applications for touch surfaces. PyTouch will also prepare you for developing 
+              for many other types of touch enabled devices since it follows many of the same 
+              design practices.
+            </p>
+          </div>
+          <div class="content-sub-div" id="installation">
+            <h1>Installation</h1>
+            <p>
+              PyTouch requires <a href="http://pygame.org/news.html" target="_blank">pygame</a>
+              in order to function.  If you are on windows or linux you can just follow the instructions 
+              on pygame's <a href="http://pygame.org/news.html" target="_blank">website</a>.
+              <br><br>
+              In order to install on OSX, first you will need to install homebrew:
+            </p>
+            <div class="highlight">
+              <pre>
               <code class="bash">  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"</code>
             </pre>
-          </div>
-          <p>Next download <a href="http://www.pip-installer.org/en/latest/installing.html#install-pip">pip</a> 
-            and then run the following commands from the directory containing the file you downloaded:</p>
-          <div class="highlight">
-            <pre>
+            </div>
+            <p>Next download <a href="http://www.pip-installer.org/en/latest/installing.html#install-pip">pip</a> 
+              and then run the following commands from the directory containing the file you downloaded:</p>
+            <div class="highlight">
+              <pre>
               <code class="bash">  python get-pip.py
   brew install mercurial</code>
             </pre>
-          </div>
-          <p>Lastly you need to install a couple dependencies for pygame and pygame itself:</p>
-          <div class="highlight">
-            <pre>
+            </div>
+            <p>Lastly you need to install a couple dependencies for pygame and pygame itself:</p>
+            <div class="highlight">
+              <pre>
               <code class="bash">  brew install sdl sdl_image sdl_mixer sdl_ttf portmidi 
   sudo pip install hg+http://bitbucket.org/pygame/pygame</code>
             </pre>
-          </div>
-          <p>Now that you've installed pygame the final step is to install PyTouch! So either click 
-          <a href="https://github.com/tuftsdev/TouchTable/zipball/master">here</a> to download the 
-          zip of the project or type the following command:</p>
-          <div class="highlight">
-            <pre>
+            </div>
+            <p>Now that you've installed pygame the final step is to install PyTouch! So either click 
+              <a href="https://github.com/tuftsdev/TouchTable/zipball/master">here</a> to download the 
+              zip of the project or type the following command:</p>
+            <div class="highlight">
+              <pre>
               <code class="bash">  git clone https://github.com/tuftsdev/TouchTable.git</code>
             </pre>
-          </div>
-          <p>And in that directory type this:</p>
-          <div class="highlight end">
-            <pre>
+            </div>
+            <p>And in that directory type this:</p>
+            <div class="highlight end">
+              <pre>
               <code class="bash">  python setup.py install</code>
             </pre>
+            </div>
           </div>
-        </div>
-        <div class="content-div" id="first">
-          <h1>Your First App</h1>
-          <p>Great! You are now ready to start writing PyTouch apps. Here is a simple example of an 
-            app which has a rectangle that you can click and drag around the screen.</p>
-          <div class="highlight">
-            <pre>
+          <div class="content-sub-div" id="first">
+            <h1>Your First App</h1>
+            <p>Great! You are now ready to start writing PyTouch apps. Here is a simple example of an 
+              app which has a rectangle that you can click and drag around the screen.</p>
+            <div class="highlight">
+              <pre>
               <code class="python">  import pytouch
   if __name__ == "__main__":
     p = pytouch.init()
@@ -112,6 +113,7 @@
     while 1:
       p.update()</code>
             </pre>
+            </div>
           </div>
         </div>
       </div>

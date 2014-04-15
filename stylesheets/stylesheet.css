@@ -331,6 +331,10 @@ code {
   .box-shadow-menu {
     display: block;
   }
+  
+  .api-description {
+    margin-left: 0;
+  }
 
 }
 
