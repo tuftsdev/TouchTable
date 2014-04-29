@@ -89,6 +89,7 @@ Theme Styles
 
 .header-nav-item.active {
   background-color: rgba(189, 195, 199,.9);
+  color: black;
 }
 
 .navbar-nav li:hover,
@@ -177,11 +178,17 @@ code {
 }
 
 .nice-btn {
-  height: 50px;
-  border: 3px solid #fff;
+  position: relative;
+  font-family: 'Lato';
+  font-size: 20px;
+  font-weight: 300;
+  padding: 20px;
+  height: 70px;
+  border: 3px solid #27ae60;
   background: none;
-  color: white;
-  border-radius: 6px;
+  color: #27ae60;
+  left: 300px;
+  top: 20px;
 }
 
 .nice-btn:after {
@@ -189,7 +196,7 @@ code {
 	height: 103%;
 	top: 50%;
 	left: 50%;
-	background: #fff;
+	background: #27ae60;
 	opacity: 0;
 	-webkit-transform: translateX(-50%) translateY(-50%);
 	-moz-transform: translateX(-50%) translateY(-50%);
@@ -209,7 +216,7 @@ code {
 
 .nice-btn:hover,
 .active{
-  color: #9b59b6;
+  color: #fff;
 }
 
 .nice-btn:hover:after {
@@ -217,7 +224,7 @@ code {
   opacity: 1;
 }
 
-.nice-btn.active:after {
+.nice-btn:active:after {
   width: 101%;
   opacity: 1;
 }
@@ -270,6 +277,7 @@ code {
   margin-left: 40px;
   font-size: 18px;
   display: none;
+  color: black;
 }
 
 .sidebar-item.active .sidebar-sub-list {
@@ -306,6 +314,22 @@ code {
 
 .menu {
   font-size: 30px;
+}
+
+.parameters {
+  background-color: #DADFE1;
+}
+
+.parameter {
+  margin-bottom: 10px;
+}
+
+.param-title {
+  font-weight: 400 !important;
+}
+
+.param-desc {
+  padding-left: 50px;
 }
 
 

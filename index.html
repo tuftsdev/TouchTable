@@ -41,7 +41,13 @@
       <div class="sidebar-wrapper">
         <ul class="sidebar nav">
           <li class="sidebar-item active"><a href="#introduction">Introduction</a></li>
-          <li class="sidebar-item"><a href="#installation">Installation</a></li>
+          <li class="sidebar-item">
+            <a href="#installation">Installation</a>
+            <ul class="sidebar-sub-list nav">
+              <li class="sidebar-sub-item"><a href="#install-dependencies">Dependencies</a></li>
+              <li class="sidebar-sub-item"><a href="#install-pytouch">PyTouch</a></li>
+            </ul>
+          </li>
           <li class="sidebar-item"><a href="#first">First App</a></li>
         </ul>
       </div>
@@ -55,14 +61,18 @@
               for many other types of touch enabled devices since it follows many of the same 
               design practices.
             </p>
-            <button class="nice-btn" href="https://github.com/tuftsdev/TouchTable/zipball/master">Download PyTouch</button>
+            <form action="https://github.com/tuftsdev/TouchTable/zipball/master">
+              <button class="nice-btn">Download PyTouch</button>
+            </form>
           </div>
           <div class="content-sub-div" id="installation">
             <h1>Installation</h1>
+            <h3 id="install-dependencies">Dependencies</h3>
             <p>
               PyTouch requires <a href="http://pygame.org/news.html" target="_blank">pygame</a>
               in order to function.  If you are on windows or linux you can just follow the instructions 
-              on pygame's <a href="http://pygame.org/news.html" target="_blank">website</a>.
+              on pygame's <a href="http://pygame.org/news.html" target="_blank">website</a> and then continue
+              with the instructions in the <a href="#install-pytouch">PyTouch Install</a> section.
               <br><br>
               In order to install on OSX, first you will need to install homebrew:
             </p>
@@ -86,6 +96,7 @@
   sudo pip install hg+http://bitbucket.org/pygame/pygame</code>
             </pre>
             </div>
+            <h3 id="install-pytouch">PyTouch</h3>
             <p>Now that you've installed pygame the final step is to install PyTouch! So either click 
               <a href="https://github.com/tuftsdev/TouchTable/zipball/master">here</a> to download the 
               zip of the project or type the following command:</p>
@@ -100,6 +111,7 @@
               <code class="bash">  python setup.py install</code>
             </pre>
             </div>
+            <p>Now in the python interpreter type import pytouch and you should receive no errors.</p>
           </div>
           <div class="content-sub-div" id="first">
             <h1>Your First App</h1>

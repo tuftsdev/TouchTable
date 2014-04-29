@@ -42,10 +42,13 @@
           <li class="sidebar-item active">
             <a href="#pytouch">pytouch</a>
             <ul class="sidebar-sub-list nav">
+              <li class="sidebar-sub-item"><a href="#pytouch-init">init</a></li>
               <li class="sidebar-sub-item"><a href="#pytouch-update">update</a></li>
               <li class="sidebar-sub-item"><a href="#pytouch-redraw">redraw</a></li>
               <li class="sidebar-sub-item"><a href="#pytouch-clear">clear</a></li>
               <li class="sidebar-sub-item"><a href="#pytouch-rect">Rect</a></li>
+              <li class="sidebar-sub-item"><a href="#pytouch-image">Image</a></li>
+              <li class="sidebar-sub-item"><a href="#pytouch-text">Text</a></li>
             </ul>
           </li>
           <li class="sidebar-item"><a href="#touch">pytouch.touch</a></li>
@@ -64,6 +67,21 @@
             </p>
           </div>
           <br>
+          <div class="content-sub-div" id="pytouch-init">
+            <h3>init(bgcolor)</h3>
+            <div class="api-description">
+              <p>
+                Initializes the pytouch app.
+              </p>
+              <div class="parameters">
+                <div class="parameter">
+                  <p class="param-title">bgcolor : (r,g,b)</p>
+                  <p class="param-desc">Sets the background color of the app</p>
+                  <p class="param-desc">Defaults to (0,0,0)</p>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="content-sub-div" id="pytouch-update">
             <h3>update</h3>
             <div class="api-description">
@@ -99,13 +117,145 @@
                 Clear empties the screen of all objects but does not delete them, if redraw is called all 
                 of the objects will be placed back on the screen in their last positions or if they were 
                 moved in their new positions.
+              </p>
             </div>
           </div>
           <div class="content-sub-div" id="pytouch-rect">
             <h3>Rect(x, y, width, height, color, alpha, z_index, drag_enabled, edge_thickness)</h3>
             <div class="api-description">
               <p>
-                Rect calls the pyobject.rect constructor and creates 
+                Rect calls the pyobject.rect constructor and adds the object to the list of all other objects that have been created.
+              </p>
+              <div class="parameters">
+                <div class="parameter">
+                  <p class="param-title">x : integer</p>
+                  <p class="param-desc">The x position of where the rect is going to be drawn.</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">y : integer</p>
+                  <p class="param-desc">The y position of where the rect is going to be drawn.</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">width : integer</p>
+                  <p class="param-desc">Width of the rect to be drawn</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">height : integer</p>
+                  <p class="param-desc">Height of the rect to be drawn</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">color : string</p>
+                  <p class="param-desc">Color of the rect to be drawn</p>
+                  <p class="param-desc">Defaults to 'white'</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">alpha : integer</p>
+                  <p class="param-desc">Alpha (transparency) of the rect to be drawn</p>
+                  <p class="param-desc">Defaults to None</p>
+                  <p class="param-desc">Valid input is 0 to 255</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">z_index : integer</p>
+                  <p class="param-desc">z_index of the rect to be drawn which specifies depth of objects.</p>
+                  <p class="param-desc">A z_index with a higher value will be drawn on top of objects with lower z_indices.</p>
+                  <p class="param-desc">Defaults to 0</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">drag_enabled : boolean</p>
+                  <p class="param-desc">Specifies whether this object will respond to drag events and can be moved.</p>
+                  <p class="param-desc">Defaults to False</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">edge_thickness : integer</p>
+                  <p class="param-desc">Applies a border with the specified width.</p>
+                  <p class="param-desc">Defaults to 0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-sub-div" id="pytouch-image">
+            <h3>Image(image, x, y, z_index, drag_enabled)</h3>
+            <div class="api-description">
+              <p>
+                Image calls the pyobject.image constructor and adds the object to the list of all other objects that have been created.
+              </p>
+              <div class="parameters">
+                <div class="parameter">
+                  <p class="param-title">image : string</p>
+                  <p class="param-desc">Path of the image to be loading</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">x : integer</p>
+                  <p class="param-desc">The x position of where the rect is going to be drawn.</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">y : integer</p>
+                  <p class="param-desc">The y position of where the rect is going to be drawn.</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">z_index : integer</p>
+                  <p class="param-desc">z_index of the rect to be drawn which specifies depth of objects.</p>
+                  <p class="param-desc">A z_index with a higher value will be drawn on top of objects with lower z_indices.</p>
+                  <p class="param-desc">Defaults to 0</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">drag_enabled : boolean</p>
+                  <p class="param-desc">Specifies whether this object will respond to drag events and can be moved.</p>
+                  <p class="param-desc">Defaults to False</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-sub-div" id="pytouch-text">
+            <h3>Text(x,y,text,fontsize,fontcolor,font,aa,z_index,drag_enabled)</h3>
+            <div class="api-description">
+              <p>
+                Text calls the pyobject.text constructor and adds the object to the list of all other objects that have been created.
+              </p>
+              <div class="parameters">
+                <div class="parameter">
+                  <p class="param-title">x : integer</p>
+                  <p class="param-desc">The x position of where the rect is going to be drawn.</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">y : integer</p>
+                  <p class="param-desc">The y position of where the rect is going to be drawn.</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">text : string</p>
+                  <p class="param-desc">Actual text to be added</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">fontsize : integer</p>
+                  <p class="param-desc">Size of the text to be added</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">fontcolor : (r,g,b)</p>
+                  <p class="param-desc">Color of the text to be added</p>
+                  <p class="param-desc">Defaults to (255,255,255)</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">font : string</p>
+                  <p class="param-desc">Font of the text to be added</p>
+                  <p class="param-desc">Defaults to None</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">aa : boolean</p>
+                  <p class="param-desc">Sets the anti-aliasing value, true means that there will be anti-aliasing</p>
+                  <p class="param-desc">Defaults to 1</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">z_index : integer</p>
+                  <p class="param-desc">z_index of the rect to be drawn which specifies depth of objects.</p>
+                  <p class="param-desc">A z_index with a higher value will be drawn on top of objects with lower z_indices.</p>
+                  <p class="param-desc">Defaults to 0</p>
+                </div>
+                <div class="parameter">
+                  <p class="param-title">drag_enabled : boolean</p>
+                  <p class="param-desc">Specifies whether this object will respond to drag events and can be moved.</p>
+                  <p class="param-desc">Defaults to False</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
