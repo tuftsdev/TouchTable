@@ -31,13 +31,14 @@ except ImportError:
     print('Pygame missing, it is required!\n')
     raise
 
+
 # Setup
 setup(
     name='Pytouch',
-    version=pytouch.__version__,
+    version='0.1',
     author='Andrew Li and Aaron Wishnick',
-    author_email='...',
-    url='...',
+    author_email='aaronwishnick@gmail.com',
+    url='https://github.com/tuftsdev/TouchTable/',
     license='...',
     descrition=(
         'A software library for touch table development '
@@ -45,7 +46,11 @@ setup(
     #ext_modules=ext_modules, # WILL NEED THESE EXT. MODULES
     packages=[
         'pytouch',
-        'pytouch.input',
-        'pytouch.input.providers'],
+        'pytouch.touch',
+        'pytouch.touch.pytuio',
+        'pytouch.time',
+        'pytouch.pyobject',
+        'pytouch.sound'],
     package_dir={'pytouch': 'pytouch'}
 )
+
