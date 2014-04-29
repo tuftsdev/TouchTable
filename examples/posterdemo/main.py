@@ -4,6 +4,7 @@
 import os, sys, inspect
 from whackdemo import WhackApp
 from pixeldemo import PixelApp
+import whack
 
 CUR_DIR = os.path.dirname(os.path.abspath(
     inspect.getfile(inspect.currentframe())))
@@ -172,7 +173,7 @@ class App(object):
         self.pb.clean()
         self.pb = None
 
-        self.whack.run(self.pytouch)
+        whack.run(p=self.pytouch)
 
         self.pb = PixelBackground(self.pytouch)
         self.wb = WhackBackground(self.pytouch)

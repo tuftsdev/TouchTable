@@ -30,8 +30,6 @@ class PyTouch(object):
                         else:
                             self.draggedObject = None
                         break
-                    elif t.time_held == 0:
-                        self.touchedBackgroundHandler()
         i = 0
         for obj in self.objects:
             if obj.active:
