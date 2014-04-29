@@ -176,6 +176,55 @@ code {
   margin-bottom: 400px;
 }
 
+.nice-btn {
+  height: 50px;
+  border: 3px solid #fff;
+  background: none;
+  color: white;
+  border-radius: 6px;
+}
+
+.nice-btn:after {
+  width: 0;
+	height: 103%;
+	top: 50%;
+	left: 50%;
+	background: #fff;
+	opacity: 0;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
+
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+.nice-btn:hover,
+.active{
+  color: #9b59b6;
+}
+
+.nice-btn:hover:after {
+  width: 90%;
+  opacity: 1;
+}
+
+.nice-btn.active:after {
+  width: 101%;
+  opacity: 1;
+}
+
+.nice-btn:focus {
+  outline: none;
+}
 /*****************************************
  *      Sidebar
  ****************************************/
