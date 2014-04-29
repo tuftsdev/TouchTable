@@ -338,6 +338,42 @@ code {
 
 }
 
+/*****************************************************
+ * 404 Page
+ *****************************************************/
+
+.content-404 {
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  top: 65px;
+  overflow-y: hidden;
+}
+
+body {
+  overflow-y: hidden;
+}
+
+.content-404 h1,
+.content-404 h3{
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 50px;
+}
+
+.content-404 h3 {
+  font-size: 30px;
+}
+
+.snake-boundary {
+  width: 90%;
+  margin-left: 5%;
+  background-color: #2c3e50;
+  height: 75%;
+  margin-top: 2%;
+}
+
 /*
 
 body {
