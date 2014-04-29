@@ -31,7 +31,6 @@ except ImportError:
     print('Pygame missing, it is required!\n')
     raise
 
-
 # Setup
 setup(
     name='Pytouch',
