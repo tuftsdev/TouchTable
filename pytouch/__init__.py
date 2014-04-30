@@ -1,5 +1,5 @@
 import sys
-import pygame, touch, pyobject
+import pygame, touch, pyobject, time
 from pygame.locals import *
 
 def init():
