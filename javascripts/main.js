@@ -23,4 +23,7 @@ $(document).ready(function(){
     newHeight = height-65;
     $('.sidebar-wrapper').css('height', newHeight+'px');
   }
+  if(!window.webkitURL && window.location.href.indexOf("about") == -1){
+    $(".content").addClass('scroll');
+  }
 });
