@@ -16,9 +16,6 @@ class Rectangle(PyObject):
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
 
-    def changeColor(self, r, g, b, a):
-        self.color = pygame.Color(r,g,b,a)
-
     def changeColor(self, color, g=None, b=None, a=None):
         if g is None or b is None or a is None:
             self.color = pygame.Color(color)
