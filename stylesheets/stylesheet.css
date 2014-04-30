@@ -127,6 +127,10 @@ Theme Styles
   margin-bottom: 100px;
 }
 
+.content.scroll {
+  overflow-y: scroll;
+}
+
 .content-div,
 .content-sub-div{
   padding-top: 65px;
