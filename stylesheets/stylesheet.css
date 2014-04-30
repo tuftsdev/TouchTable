@@ -124,6 +124,7 @@ Theme Styles
   position: absolute;
   top: 0px;
   left: 25%;
+  margin-bottom: 100px;
 }
 
 .content-div,
@@ -237,7 +238,6 @@ code {
 
 .sidebar {
   position: fixed;
-  top: 150px;
   left: 0;
   width: 25%;
   height: 100px;
@@ -277,6 +277,8 @@ code {
   font-size: 18px;
   display: none;
   color: black;
+  max-height: 400px;
+  overflow-y: scroll;
 }
 
 .sidebar-item.active .sidebar-sub-list {

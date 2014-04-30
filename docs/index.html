@@ -51,8 +51,81 @@
               <li class="sidebar-sub-item"><a href="#pytouch-text">Text</a></li>
             </ul>
           </li>
-          <li class="sidebar-item"><a href="#touch">pytouch.touch</a></li>
-          <li class="sidebar-item"><a href="#pyobject">pytouch.object</a></li>
+          <li class="sidebar-item">
+            <a href="#touch">pytouch.touch</a>
+            <ul class="sidebar-sub-list nav">
+              <li class="sidebar-sub-item"><a href="#touch-class">Touch</a></li>
+              <li class="sidebar-sub-item">
+                <a href="#touchtracker">Touch Tracker</a>
+                <ul class="sidebar-sub-list nav">
+                  <li class="sidebar-sub-item"><a href="#touchtracker-init">init</a></li>
+                  <li class="sidebar-sub-item"><a href="#touchtracker-update">update</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a href="#pyobject">pytouch.pyobject</a>
+            <ul class="sidebar-sub-list nav">
+              <li class="sidebar-sub-item"><a href="#pyobject-init">init</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-draw">draw</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-update">update</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-move">move</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-visible">setVisible</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-remove">remove</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-touchInside">touchInside</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-drag">dragHandler</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-hold">holdHandler</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-upinside">touchUpInsideHandler</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-collide">collide</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-collidelist">collidelist</a></li>
+              <li class="sidebar-sub-item"><a href="#pyobject-collidelistall">collidelistall</a></li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a href="#image">pytouch.pyobject.image</a>
+            <ul class="sidebar-sub-list nav">
+              <li class="sidebar-sub-item"><a href="#image-init">init</a></li>
+              <li class="sidebar-sub-item"><a href="#image-draw">draw</a></li>
+              <li class="sidebar-sub-item"><a href="#image-change">change_image</a></li>
+              <li class="sidebar-sub-item"><a href="#image-resize">resize</a></li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a href="#rect">pytouch.pyobject.rect</a>
+            <ul class="sidebar-sub-list nav">
+              <li class="sidebar-sub-item"><a href="#rect-init">init</a></li>
+              <li class="sidebar-sub-item"><a href="#rect-draw">draw</a></li>
+              <li class="sidebar-sub-item"><a href="#rect-change">change_color</a></li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a href="#text">pytouch.pyobject.text</a>
+            <ul class="sidebar-sub-list nav">
+              <li class="sidebar-sub-item"><a href="#text-init">init</a></li>
+              <li class="sidebar-sub-item"><a href="#text-draw">draw</a></li>
+              <li class="sidebar-sub-item"><a href="#text-change">change_text</a></li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a href="#time">pytouch.time</a>
+            <ul class="sidebar-sub-list nav">
+              <li class="sidebar-sub-item"><a href="#time-ticks">get_ticks</a></li>
+              <li class="sidebar-sub-item"><a href="#time-wait">wait</a></li>
+              <li class="sidebar-sub-item"><a href="#time-delay">delay</a></li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a href="#clock">pytouch.time.clock</a>
+            <ul class="sidebar-sub-list nav">
+              <li class="sidebar-sub-item"><a href="#clock-init">get_ticks</a></li>
+              <li class="sidebar-sub-item"><a href="#clock-tick">tick</a></li>
+              <li class="sidebar-sub-item"><a href="#clock-tickbusy">tick_busy_loop</a></li>
+              <li class="sidebar-sub-item"><a href="#clock-time">get_time</a></li>
+              <li class="sidebar-sub-item"><a href="#clock-rawtime">get_rawtime</a></li>
+              <li class="sidebar-sub-item"><a href="#clock-fps">get_fps</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
       <div class="main-content">
@@ -262,6 +335,433 @@
         <div class="content-div">
           <div class="content-sub-div" id="touch">
             <h1>Touch</h1>
+            <div class="content-sub-div" id="touch-class">
+              <h3>Touch</h3>
+              <div class="api-description">
+                <p>
+                  Represents a single touch from a user.
+                </p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">xpos</p>
+                    <p class="param-desc">X position of the touch</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">ypos</p>
+                    <p class="param-desc">Y position of the touch</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">origin</p>
+                    <p class="param-desc">Origin of the touch, can be either mouse or Tuio</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">sessionid</p>
+                    <p class="param-desc">Unique id of the touch, mouse touches are negative numbers, TUIO are positive</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">status</p>
+                    <p class="param-desc">Status of the click, can be clicked, dragging, holding, held</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">time_held</p>
+                    <p class="param-desc">Time that the touch has been held in the same place.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-sub-div" id="touchtracker">
+              <h3>Touch Tracker</h3>
+              <div class="api-description">
+                <p>All touches from mouse and tuio are merged into Touch objects and then will return the most recent touch.</p>
+                <div class="content-sub-div" id="touchtracker-init" style="margin-top:-20px;">
+                  <h3>init(window_width, window_height)</h3>
+                  <div class="api-description">
+                    <p>Initializes the touch tracker</p>
+                    <div class="parameters">
+                      <div class="parameter">
+                        <p class="param-title">window_width : integer</p>
+                        <p class="param-desc">Width of the window of the app</p>
+                      </div>
+                      <div class="parameter">
+                        <p class="param-title">window_height : integer</p>
+                        <p class="param-desc">Height of the window of the app</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-sub-div" id="touchtracker-update">
+                  <h3>update</h3>
+                  <div class="api-description">
+                    <p>Update checks for all new touch inputs every time it is called and will return one if found.
+                      It responds to both mouse and tuio inputs and will merge them all into Touch objects.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-div" style="margin-top: -400px; padding-top: 0;">
+          <div class="content-sub-div" id="pyobject">
+            <h1>Pyobject</h1>
+            <p style="margin-bottom: -50px;">Pyobject is an abstract class that contains methods that are implemented by classes that inherit from it including Rect, Image, and Text.</p>
+            <div class="content-sub-div" id="pyobject-init">
+              <h3>init(x,y,width,height,z_index,drag_enabled)</h3>
+              <div class="api-description">
+                <p>Initializes a new instance of a pyobject</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">x : integer</p>
+                    <p class="param-desc">The x position of where the rect is going to be drawn.</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">y : integer</p>
+                    <p class="param-desc">The y position of where the rect is going to be drawn.</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">width : integer</p>
+                    <p class="param-desc">Width of the rect to be drawn</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">height : integer</p>
+                    <p class="param-desc">Height of the rect to be drawn</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">z_index : integer</p>
+                    <p class="param-desc">z_index of the rect to be drawn which specifies depth of objects.</p>
+                    <p class="param-desc">A z_index with a higher value will be drawn on top of objects with lower z_indices.</p>
+                    <p class="param-desc">Defaults to 0</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">drag_enabled : boolean</p>
+                    <p class="param-desc">Specifies whether this object will respond to drag events and can be moved.</p>
+                    <p class="param-desc">Defaults to False</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-draw">
+              <h3>draw</h3>
+              <div class="api-description">
+                <p>Draws the object to the screen, this must be implemented by a class that inherits from pyobject</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-update">
+              <h3>update</h3>
+              <div class="api-description">
+                <p>An optional function to implemented by a user, will be called every time pytouch.update() is called.</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-move">
+              <h3>move(x,y)</h3>
+              <div class="api-description">
+                <p>Moves the object to the specified coordinations</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">x : integer</p>
+                    <p class="param-desc">X position of where the object should be moved.</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">y : integer</p>
+                    <p class="param-desc">Y position of where the object should be moved.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-visible">
+              <h3>setVisible(visible)</h3>
+              <div class="api-description">
+                <p>Sets the visibility of an object</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">visibile : boolean</p>
+                    <p class="param-desc">If visible is true then object will be drawn to the screen, otherwise it will not.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-remove">
+              <h3>remove</h3>
+              <div class="api-description">
+                <p>Will remove the object from existence within the app</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-touchInside">
+              <h3>touchInside(touch)</h3>
+              <div class="api-description">
+                <p>Checks to see if a touch is within an object, if it is it will call the corresponding callback function based on the status of the touch.</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">touch : Touch</p>
+                    <p class="param-desc">Instance of the Touch class.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-drag">
+              <h3>dragHandler(obj,touch,extra)</h3>
+              <div class="api-description">
+                <p>Handler that gets called when an object has a click and drag event on it. Default event is to check if drag_enabled is true 
+                  and if it is the object will move with the touch. User may override this to complete a different action on drag.</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">obj : pyobject</p>
+                    <p class="param-desc">Object that is being touched</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">touch : Touch</p>
+                    <p class="param-desc">Instance of the Touch class.</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">extra : dictionary</p>
+                    <p class="param-desc">Any additional values that the user may need.</p>
+                    <p class="param-desc">Default value is None</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-hold">
+              <h3>holdHandler(obj,touch,extra)</h3>
+              <div class="api-description">
+                <p>Handler that gets called when an object has a click and hold event on it. Default event is to do nothing.
+                  User may override this to complete a different action on click and hold.</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">obj : pyobject</p>
+                    <p class="param-desc">Object that is being touched</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">touch : Touch</p>
+                    <p class="param-desc">Instance of the Touch class.</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">extra : dictionary</p>
+                    <p class="param-desc">Any additional values that the user may need.</p>
+                    <p class="param-desc">Default value is None</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-upinside">
+              <h3>touchUpInsideHandler(obj,touch,extra)</h3>
+              <div class="api-description">
+                <p>Handler that gets called when an object has a click event on it. Default event is to do nothing.
+                  User may override this to complete a different action on click.</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">obj : pyobject</p>
+                    <p class="param-desc">Object that is being touched</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">touch : Touch</p>
+                    <p class="param-desc">Instance of the Touch class.</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">extra : dictionary</p>
+                    <p class="param-desc">Any additional values that the user may need.</p>
+                    <p class="param-desc">Default value is None</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-collide">
+              <h3>collide(obj)</h3>
+              <div class="api-description">
+                <p>Checks to see if a pyobject collides with another one.</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">obj : pyobject</p>
+                    <p class="param-desc">Object that will be checked for collision.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-collidelist">
+              <h3>collidelist(objlist)</h3>
+              <div class="api-description">
+                <p>Checks to see if a pyobject within a list of pyobjects collides with another one, returns the first collision.</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">objlist : list</p>
+                    <p class="param-desc">List of pyobjects that will be checked for collision.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-sub-div" id="pyobject-collidelistall">
+              <h3>collidelistall(objlist)</h3>
+              <div class="api-description">
+                <p>Checks to see if pyobjects within a list of pyobjects collide with another one, returns all collisions.</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">objlist : list</p>
+                    <p class="param-desc">List of pyobjects that will be checked for collision.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-div">
+          <div class="content-sub-div" id="image">
+            <h1>Image</h1>
+            <div class="content-sub-div" id="image-init" style="margin-top: -50px;">
+              <h3>init(image,x,y,z_index,drag_enabled)</h3>
+              <div class="api-description">
+                <p>See <a href="#pytouch-image">pytouch.Image</a></p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="image-draw">
+              <h3>draw(surface)</h3>
+              <div class="api-description">
+                <p>Draws the image onto the provided surface</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="image-change">
+              <h3>change_image(image)</h3>
+              <div class="api-description">
+                <p>Changes the image of the object.</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">image : string</p>
+                    <p class="param-desc">Path to image</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-sub-div" id="image-resize">
+              <h3>resize(width,height)</h3>
+              <div class="api-description">
+                <p>Resizes image to the specified dimensions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-div">
+          <div class="content-sub-div" id="rect">
+            <h1>Rectangle</h1>
+            <div class="content-sub-div" id="rect-init" style="margin-top: -50px;">
+              <h3>init(x,y,width,height,color,alpha,z_index,drag_enabled,edge_thickness)</h3>
+              <div class="api-description">
+                <p>See <a href="#pytouch-rect">pytouch.Rect</a></p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="rect-draw">
+              <h3>draw(surface)</h3>
+              <div class="api-description">
+                <p>Draws the rect onto the provided surface</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="rect-change">
+              <h3>change_color(color,g,b,a)</h3>
+              <div class="api-description">
+                <p>Changes the color of the object.</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">color : string or integer</p>
+                    <p class="param-desc">If g,b,a are provided this should be an integer representing r in rgba</p>
+                  </div>
+                  <div class="parameter">
+                    <p class="param-title">g,b,a : integer</p>
+                    <p class="param-desc">Integers reprenting gba in rgba values</p>
+                    <p class="param-desc">Default to None</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-div">
+          <div class="content-sub-div" id="text">
+            <h1>Text</h1>
+            <div class="content-sub-div" id="text-init" style="margin-top: -50px;">
+              <h3>init(x,y,text,fontsize,fontcolor,font,aa,z_index,drag_enabled)</h3>
+              <div class="api-description">
+                <p>See <a href="#pytouch-text">pytouch.Text</a></p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="text-draw">
+              <h3>draw(surface)</h3>
+              <div class="api-description">
+                <p>Draws the text onto the provided surface</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="text-change">
+              <h3>changeText(text)</h3>
+              <div class="api-description">
+                <p>Changes the text of the object.</p>
+                <div class="parameters">
+                  <div class="parameter">
+                    <p class="param-title">text : string</p>
+                    <p class="param-desc">Text to change the current text to.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-div">
+          <div class="content-sub-div" id="time">
+            <h1>Time</h1>
+            <div class="content-sub-div" id="time-ticks" style="margin-top: -50px;">
+              <h3>get_ticks</h3>
+              <div class="api-description">
+                <p>Returns time in milliseconds since start of app.</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="time-wait">
+              <h3>wait(milliseconds)</h3>
+              <div class="api-description">
+                <p>Wait sleeps the process for a given number of milliseconds.</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="time-delay">
+              <h3>delay(milliseconds)</h3>
+              <div class="api-description">
+                <p>Delay stops the app for a given number of milliseconds but does not sleep the process.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-div">
+          <div class="content-sub-div" id="clock">
+            <h1>Time</h1>
+            <div class="content-sub-div" id="clock-init" style="margin-top: -50px;">
+              <h3>init</h3>
+              <div class="api-description">
+                <p>Starts the app clock.</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="clock-tick">
+              <h3>tick(framerate)</h3>
+              <div class="api-description">
+                <p>Returns the number of milliseconds since the last time tick was called, should be called every frame.</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="clock-tickbusy">
+              <h3>tick_busy_loop(framerate)</h3>
+              <div class="api-description">
+                <p>Returns the number of milliseconds since that last time tick_busy_loop was called, 
+                  should be called every frame. More accurate but also requires more cpu than tick.</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="clock-time">
+              <h3>get_time</h3>
+              <div class="api-description">
+                <p>Returns the number of milliseconds between the last two calls to tick.</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="clock-rawtime">
+              <h3>get_rawtime</h3>
+              <div class="api-description">
+                <p>Similar to time but does not include delays from tick</p>
+              </div>
+            </div>
+            <div class="content-sub-div" id="clock-fps">
+              <h3>get_fps</h3>
+              <div class="api-description">
+                <p>Computes game's framerate by averaging the last 10 calls to tick</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

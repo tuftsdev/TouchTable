@@ -14,4 +14,13 @@ $(document).ready(function(){
       }
     }
   });
+  $(window).resize(function(){
+    resizeSidebar();
+  })
+  resizeSidebar();
+  function resizeSidebar(){
+    height = $(window).height();
+    newHeight = height-65;
+    $('.sidebar-wrapper').css('height', newHeight+'px');
+  }
 });
