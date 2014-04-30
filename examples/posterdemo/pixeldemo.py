@@ -197,9 +197,9 @@ class PixelApp():
         self.scoretext = pytouch.Text(0, 0, "Score: " + str(self.score), 30, z_index=1)
         self.scoretext.setVisible(False)
 
-        self.quit = pytouch.Text(0, 0, "QUIT", 30, z_index=3)
+        self.quit = pytouch.Text(0, 0, "QUIT", 60, z_index=3)
         self.quit.touchUpInsideHandler = self.quitHandler
-        self.quit.move(pytouch.screen_w - HPBAR_WIDTH - self.quit.rect.width, 0)
+        self.quit.move(pytouch.screen_w - self.quit.width, pytouch.screen_h - self.quit.height)
 
         self.enemies = []
         self.starfield = Starfield()

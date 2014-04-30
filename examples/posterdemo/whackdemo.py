@@ -8,7 +8,7 @@ PAR_DIR = os.path.dirname(CUR_DIR)
 PAR_DIR = os.path.dirname(PAR_DIR)
 sys.path.insert(0, PAR_DIR)
 
-import pytouch
+#import pytouch
 import random
 
 class WhackApp(object):
@@ -26,6 +26,7 @@ class WhackApp(object):
         self.running = False
 
     def touch_handler(self, obj, touch):
+        #print "touch_handler whack"
         obj.change_image('mole_hit.png')
         self.score += 10
         self.scoretext.changeText("Score: " + str(self.score))
@@ -55,17 +56,17 @@ class WhackApp(object):
         mole.touchUpInsideHandler = self.touch_handler
 
         timer = 0
-        timer_max = random.randint(50,100)
+        timer_max = random.randint(10,20)
         while self.running:
             if timer > timer_max:
-                timer_max = random.randint(50,100)
+                timer_max = random.randint(10,20)
                 timer = 0
                 x = random.randint(1, 3)
                 y = random.randint(1, 3)
+                mole.remove()
+                mole = p.Image("mole_cartoon.png", 0, 0, z_index=5)
                 mole.move(x * OFFSET_W + (x-1) * mole.width, y * p.screen_h/4 - mole.height/2)
-            elif timer == 1:
-                mole.change_image("mole_cartoon.png")
-                mole.touchUpInsideHandler = self.touch_handler # ???
+                mole.touchUpInsideHandler = self.touch_handler
             timer += 1
             p.update()
         # Clean up
@@ -80,8 +81,3 @@ class WhackApp(object):
         if self.quit is not None:
             self.quit.remove()
             self.quit = None
-
-if __name__ == "__main__":
-    w = WhackApp()
-    p = pytouch.init()
-    w.run(p)

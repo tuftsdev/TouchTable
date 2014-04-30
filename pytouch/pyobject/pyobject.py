@@ -85,7 +85,9 @@ Methods
                 self.dragHandler(self, touch)
             elif touch.status == "holding":
                 self.holdHandler(self, touch)
-            elif touch.status == "clicked" and touch.time_held == 1:
+            elif touch.status == "clicked" and touch.clickEventFired == False:
+                #print "Touch Inside callback", touch.sessionid
+                touch.clickEventFired = True
                 self.touchUpInsideHandler(self, touch)
             return True
 
@@ -97,6 +99,7 @@ Methods
         pass
 
     def touchUpInsideHandler(self, obj, touch, extra=None):
+        #print "default handler"
         pass
 
     # OBJECT COLLISION
