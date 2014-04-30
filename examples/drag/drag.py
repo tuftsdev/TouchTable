@@ -1,8 +1,19 @@
+import os, sys, inspect
+CUR_DIR = os.path.dirname(os.path.abspath(
+    inspect.getfile(inspect.currentframe())))
+PAR_DIR = os.path.dirname(CUR_DIR)
+PAR_DIR = os.path.dirname(PAR_DIR)
+sys.path.insert(0, PAR_DIR)
+
+
+# Simple Drag Example
 import pytouch
 p = pytouch.init()
 image = p.Image("image.png", 5, 5, drag_enabled=True)
 while 1:
   p.update()
+# Comment the above code and uncomment the following code for a more
+# complex example.
 
 '''
 import pytouch
@@ -28,17 +39,14 @@ if __name__ == "__main__":
   #rect2.dragHandler = drag_handler
   rect2.holdHandler = hold_handler
 
-  image = pytouch.Image("pysnake.png", 50, 50)
+  image = pytouch.Image("image.png", 50, 50)
   image.dragHandler = drag_handler
   image.convert()
 
-  image = pytouch.Image("pysnake.png", 150, 150, drag_enabled=True)
+  image = pytouch.Image("image.png", 150, 150, drag_enabled=True)
   image.convert()
 
   text = pytouch.Text(500, 500, "hello world!", 30, (255,255,255), drag_enabled=True)
-
-  circle = pytouch.Circle((150,150), 50, drag_enabled=True)
-  circle.holdHandler = hold_handler
 
   while 1:
     pytouch.update()
