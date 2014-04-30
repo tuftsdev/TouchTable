@@ -112,7 +112,7 @@ Theme Styles
   font-size: 50px;
 }
 
-.content h3 {
+.main-content h3 {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 25px;
@@ -446,6 +446,93 @@ body {
   background-color: #2c3e50;
   height: 75%;
   margin-top: 2%;
+}
+
+/********************
+ * About
+ * *****************/
+.content.about {
+  top: 45px;
+  height: 100%;
+}
+.content-top {
+  position: fixed;
+  background: url('../images/desk.jpg') center center no-repeat;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
+.gray {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,.5);
+  z-index: 10;
+}
+
+.separater {
+  height: 45px;
+  width: 100%;
+}
+
+.about-header {
+  color: white;
+  height: 100%;
+  width: 100%;
+}
+
+.title-section {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+}
+
+.content.about h3{
+  font-family: 'Lato';
+  font-weight: 300;
+  font-size: 50px;
+  text-align: center;
+}
+
+.about-header h1{
+  font-size: 100px;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+}
+
+.content-bottom {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
+.person img {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5%;
+  width: 40%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.person .description {
+  display: inline-block;
+  width: 50%;
+  font-family: 'Lato';
+  float: right;
+  font-weight: 300;
+  font-size: 20px;
+  margin-top: 50px;
+}
+
+#aaron {
+  background-color: #F2F1EF;
+  margin-bottom: 300px;
+}
+
+#andrew {
+  background-color: #65C6BB;
 }
 
 /*
