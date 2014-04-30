@@ -16,11 +16,13 @@ class Rectangle(PyObject):
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
 
-    def changeColor(self, color, g=None, b=None, a=None):
-        if g is None or b is None or a is None:
-            self.color = pygame.Color(color)
-        else:
-            self.color = pygame.Color(color, g, b, a)
+    def changeColor(self, color):
+        self.color = pygame.Color(color)
+        self.image.fill(self.color)
+
+    def changeColor(self, r, g, b, a=1):
+        self.color = pygame.Color(r, g, b, a)
+        self.image.fill(self.color)
 
     def setAlpha(self, alpha):
         self.alpha = alpha
