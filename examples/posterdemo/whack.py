@@ -14,6 +14,8 @@ SCREEN_H = 0
 RESIZE = False
 running = True
 
+FPS = 60
+
 def touch_handler(obj, touch):
   global score, scoretext, SCREEN_W, SCREEN_H, RESIZE
   if obj.enabled:
@@ -28,7 +30,7 @@ def exit(obj, touch):
   global running
   running = False
 
-def run(p=None):
+def run(p, clock):
   global SCREEN_W, SCREEN_H, scoretext, RESIZE, score, running
   running = True
   if p is not None:
@@ -61,6 +63,7 @@ def run(p=None):
 
   timer_max = random.randint(10,20)
   while running:
+    clock.tick(FPS)
     if timer > timer_max:
       timer_max = random.randint(10,20)
       timer = 0

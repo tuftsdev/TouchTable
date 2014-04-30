@@ -18,6 +18,8 @@ STAR_WIDTH = 4
 STAR_HEIGHT = 4
 STAR_SPEED = 1
 
+FPS = 60
+
 class Star():
     def __init__(self, x, y=STAR_SPAWN_Y):
         self.obj = pytouch.Rect(x, y, STAR_WIDTH, STAR_HEIGHT, color='white', alpha=random.randint(50,255))
@@ -177,6 +179,8 @@ class PixelApp():
         self.quit = None
         self.running = False
 
+        self.clock = None
+
     def quitHandler(self, obj, touch):
         self.running = False
 
@@ -218,11 +222,13 @@ class PixelApp():
                 newEnemy.obj.remove()
                 newEnemy = None
 
-    def run(self, p):
+    def run(self, p, clock):
         random.seed()
         global pytouch
         pytouch = p
         self.running = True
+
+        self.clock = clock
 
         self.initgame()
         t = pytouch.touchTracker.update()
@@ -237,6 +243,7 @@ class PixelApp():
         self.title.setVisible(True)
         self.title2.setVisible(True)
         while onTitleScreen:
+            self.clock.tick(FPS)
             t = pytouch.touchTracker.update()
             self.starfield.update()
             if not self.running:
@@ -255,6 +262,7 @@ class PixelApp():
         self.scoretext.changeText("Score: " + str(self.score))
         self.scoretext.setVisible(True)
         while onGameScreen:
+            self.clock.tick(FPS)
             if not self.running:
                 break
             pytouch.update()
@@ -304,6 +312,7 @@ class PixelApp():
         onGameOverScreen = True
         self.gameover.setVisible(True)
         while onGameOverScreen:
+            self.clock.tick(FPS)
             if not self.running:
                 break
             t = pytouch.touchTracker.update()

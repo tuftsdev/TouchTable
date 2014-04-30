@@ -2,7 +2,7 @@
     Application launcher for TouchTable poster demo
 """
 import os, sys, inspect
-from whackdemo import WhackApp
+#from whackdemo import WhackApp
 from pixeldemo import PixelApp
 import whack
 
@@ -120,9 +120,12 @@ class App(object):
     """
     def __init__(self):
         random.seed()
+
+        self.clock = pytouch.time.Clock()
         self.pytouch = pytouch.init()
 
-        self.whack = WhackApp()
+
+        #self.whack = WhackApp()
         self.pixel = PixelApp()
 
         self.running = True
@@ -161,11 +164,12 @@ class App(object):
         self.pb = PixelBackground(self.pytouch)
         self.wb = WhackBackground(self.pytouch)
         while self.running:
+            self.clock.tick(60)
             self.pb.update()
             self.wb.update()
             self.pytouch.update()
 
-    def launch_whack(self, obj,touch):
+    def launch_whack(self, obj, touch):
         self.destroybuttons()
 
         self.wb.clean()
@@ -173,7 +177,7 @@ class App(object):
         self.pb.clean()
         self.pb = None
 
-        whack.run(p=self.pytouch)
+        whack.run(self.pytouch, self.clock)
 
         self.pb = PixelBackground(self.pytouch)
         self.wb = WhackBackground(self.pytouch)
@@ -188,7 +192,7 @@ class App(object):
         self.pb.clean()
         self.pb = None
 
-        self.pixel.run(self.pytouch)
+        self.pixel.run(self.pytouch, self.clock)
 
         self.pb = PixelBackground(self.pytouch)
         self.wb = WhackBackground(self.pytouch)
